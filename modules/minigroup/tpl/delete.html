@@ -1,0 +1,20 @@
+<load target="./js/minigroup.js" />
+<load target="./filter/delete_minigroup.xml" />
+<include target="./header.html" />
+<form action="./" method="post" onsubmit="return procFilter(this, delete_minigroup)" id="fo_minigroup" class="section">
+	<input type="hidden" name="site_srl" value="{$minigroup_info->site_srl}" />
+    <h1>{$lang->cmd_minigroup_delete}</h1>
+    <p>{$lang->about_minigroup_delete}</p>
+	<dl class="x_dl-horizontal">
+		<dt>{$lang->minigroup_title}</dt>
+		<dd>{$minigroup_info->title}&nbsp;</dd>
+		<dt>{$lang->domain}</dt>
+		<dd>{$minigroup_info->domain}&nbsp;</dd>
+		<dt>{$lang->minigroup_admin}</dt>
+		<dd loop="$admin_list => $key,$val">{$val->nick_name}({$val->user_id})</dd>
+	</dl>
+	<div class="btnArea">
+		<a href="{getUrl('act','dispMinigroupAdminIndex','site_srl','')}" class="x_btn x_pull-left">{$lang->cmd_back}</a>
+		<input type="submit" value="{$lang->cmd_delete}" class="x_btn x_btn-danger" />
+	</div>
+</form>

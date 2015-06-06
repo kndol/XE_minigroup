@@ -1,0 +1,377 @@
+<!--// META -->
+<!--@if(!$is_logged && $act!='dispMemberLoginForm' && $act!='dispSocialxeInputAddInfo' && $act!='dispMemberSignUpForm')-->
+{@ $redirect_url = getUrl('','act','dispMemberLoginForm') }
+<script>location.href = "{$redirect_url}";</script>
+<!--@end-->
+
+<!--@if(class_exists(Mobile) && (Mobile::isFromMobilePhone() || Mobile::isMobileCheckByAgent() || Mobile::isMobilePadCheckByAgent()))-->
+{@
+	$isMobile = true;
+	Context::addHtmlHeader('<meta name="apple-mobile-web-app-capable" content="yes" />');
+	Context::addHtmlHeader('<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes, target-densitydpi=medium-dpi" />');
+}
+<!--@else-->
+{@Context::addHtmlHeader('<meta name="viewport" content="width=1240">')}
+<!--@end-->
+<!--// LANG -->
+<load target="./lang" />
+
+<!--// 레이아웃을 위한 설정 값들 -->
+<!--// index 모듈 체크 -->
+	{@ $_is_indexmodule = ($site_module_info->module_srl === $current_module_info->module_srl && $current_module_info->site_srl === '0')}
+	{@ $_is_mg_list = ($current_module_info->module === 'minigroup' && $current_module_info->site_srl === '0')}
+	{@ $_is_mg_site = ($is_minigroup === true)}
+	{@ $_show_mg_info = ($_is_mg_site && $logged_info && stripos($act, 'dispMinigroupAdminSite') === FALSE && stripos($act, 'dispBoardAdmin') === FALSE)}
+	{@ $_body_class = array()}
+	{@ $_selected_menu = null}
+
+<!--// 초기화 -->
+	<block cond="!$layout_info->enable_intergration_search">{@ $layout_info->enable_intergration_search = 'Y'}</block>
+<!--// 콘텐츠 영역 폭 -->
+	<!--// 회원, 커뮤니케이션 모듈 등 페이지에서 콘텐츠 영역 폭 고정 -->
+	{@ $_fixed_width_act = array(
+		'dispMemberSignUpForm',
+		'dispMemberLoginForm',
+		'dispMemberFindAccount',
+		'dispMemberInfo',
+		'dispMemberModifyPassword',
+		'dispMemberModifyEmailAddress',
+		'dispMemberModifyInfo',
+		'dispMemberLeave',
+		'dispMemberScrappedDocument',
+		'dispMemberSavedDocument',
+		'dispMemberOwnDocument',
+		'dispCommunicationFriend',
+		'dispCommunicationMessages',
+		'dispNcenterliteUserConfig',
+		'dispNcenterliteNotifyList',
+		'dispLoginxeclientListProvider',
+		'dispAjaxboardNotificationConfig',
+		'dispAuto_loginAutoLoginManager',
+		'dispSocialxeInputAddInfo',
+		'IS'
+	)}
+	<block cond="in_array($act, $_fixed_width_act)">
+		{@ $_body_class[] = 'fixed-width'}
+		{@ $_is_indexmodule = false}
+	</block>
+	<block cond="(!$_is_indexmodule && !$_is_mg_list)|| $_is_mg_site">
+		{@ $_body_class[] = 'top_padding'}
+	</block>
+
+	<block cond="stripos($mid, 'free') !== false || stripos($mid, 'notice') !== false || $_is_mg_site">
+		{@ $_body_class[] = 'shrinked-width' }
+	</block>
+	{@ $_body_class = join(' ', $_body_class)}
+<!--// END:레이아웃을 위한 설정 값들 -->
+
+<!--// 소셜 로그인 -->
+	{@ $oSocialxeModel = &getModel('socialxe'); }
+<!--// END:소셜 로그인 -->
+
+
+<!--// CSS -->
+<load target="./css/layout.css" />
+<load target="./css/webfont.css" />
+<load target="../../common/xeicon/xeicon.min.css" />
+<load target="./css/webfont.css" />
+<load target="./css/minigroup_site.css" cond="$_is_mg_site" />
+<!--// JS -->
+<load target="./js/layout.js" />
+<load target="./js/SmoothScroll.min.js" />
+<!--@if($_show_mg_info)-->
+<!--@if($isMobile)-->
+<load target="./js/minigroup_site_mobile.js" type="body" />
+<!--@else-->
+<load target="./js/minigroup_site.js" type="body" />
+<!--@end-->
+<!--@end-->
+
+<!--// BODY -->
+<div class="container fixed_header fixed_footer">
+	<!-- HEADER -->
+	<div class="header_wrap xe-clearfix">
+		<div cond="$layout_info->enable_intergration_search === 'Y'" class="search_wrap">
+			<div class="search_area">
+				<!-- SEARCH -->
+				<form action="{getUrl()}" method="get" class="search" no-error-return-url="true">
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input type="text" name="is_keyword" value="{$is_keyword}" required="required" title="{$lang->cmd_search}" placeholder="{$lang->cmd_search}" />
+				</form>
+				<!-- /SEARCH -->
+				<a href="#" class="btn_close" title="{$lang->cmd_search_close}" onclick="return false"><i class="xi-close"></i><span class="blind">{$lang->cmd_search_close}</span></a>
+			</div>
+		</div>
+
+		<header class="header">
+			<!--// LOGO -->
+			<h1 class="logo-item">
+				{@ $_logo_img = $layout_info->logo_img}
+				<a href="<!--@if($layout_info->logo_url)-->{$layout_info->logo_url}<!--@elseif($_is_mg_site)-->{getFullUrl('')}<!--@else-->{getUrl('')}<!--@end-->">
+					<!--@if($_logo_img)-->
+						<img src="{$_logo_img}" alt="{$layout_info->logo_text}" />
+					<!--@else-->
+						{@ $_logo_img = 'logo.png'}
+						<img src="{$layout_info->path}img/{$_logo_img}" alt="" />
+					<!--@end-->
+					<span class="logo-text" cond="$layout_info->logo_text != ''"> {$layout_info->logo_text}</span>
+					<span class="logo-text" cond="$layout_info->logo_text == '' && $minigroup_info->title != ''"> {$minigroup_info->title}</span>
+				</a>
+			</h1>
+			<!--// END:LOGO -->
+
+			<div class="side">
+				<ul>
+					<!-- search -->
+					<li cond="$layout_info->enable_intergration_search === 'Y'" class="click">
+						<a href="#" title="{$lang->cmd_search}"><i class="xi-magnifier"></i><span class="blind">{$lang->cmd_search}</span></a>
+					</li>
+					<!-- admin -->
+					<li cond="!$_is_mg_site && $logged_info->is_admin == 'Y'">
+						<a href="{getUrl('','module','admin')}" target="_blank" title="{$lang->cmd_management}"><i class="xi-cog"></i><span class="blind">{$lang->cmd_management}</span></a>
+					</li>
+					<li cond="$_is_mg_site && $grant->manager">
+						<a href="{getUrl('act','dispMinigroupManage')}" title="{$lang->cmd_minigroup_setup}"><i class="xi-wrench"></i><span class="blind">{$lang->cmd_minigroup_setup}</span></a>
+					</li>
+
+					<!-- login -->
+					<li class="hover">
+						<!--@if($is_logged)-->
+							<!-- after_login -->
+							<a href="{getUrl('act', 'dispMemberInfo')}" class="login_after">
+								<!--@if($logged_info->profile_image->src)-->
+									<img src="{$logged_info->profile_image->src}" alt="{$logged_info->nick_name}" />
+								<!--@else-->
+									<img src="./img/ico_default.jpg" alt="{$logged_info->nick_name}" />
+								<!--@end-->
+							</a>
+							<div class="ly ly_login">
+								<ul>
+									<li loop="$logged_info->menu_list => $key, $val"><a href="{getUrl('act', $key, 'member_srl', '', 'page', '')}">{Context::getLang($val)}</a></li>
+									<li><a href="{getUrl('act', 'dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+								</ul>
+								<span class="edge"></span>
+							</div>
+							<!-- /after_login -->
+						<!--@else-->
+							<!-- before_login -->
+							<a href="{getUrl('act', 'dispMemberLoginForm')}" id="ly_btn"><i class="xi-user-add"></i><span class="blind">{$lang->cmd_login}/{$lang->cmd_signup}</span></a>
+							<div class="ly ly_login">
+								<ul>
+									<li><a id="ly_login_btn" href="{getUrl('act', 'dispMemberLoginForm')}">{$lang->cmd_login}</a></li>
+									<li><a href="{getUrl('act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+								</ul>
+								<span class="edge"></span>
+							</div>
+							<!-- /before_login -->
+						<!--@end-->
+					</li>
+				</ul>
+			</div>
+		</header>
+	</div>
+	<!-- END:HEADER -->
+
+	<!-- BODY -->
+	<div class="body {$_body_class}">
+		<div class="minigroup_info_tab" id="minigroup_info_tab" cond="$_show_mg_info">
+{@
+	// 게시물 수 계산
+	$oMinigroupModel = &getModel('minigroup');
+	$minigroupInfo = $oMinigroupModel->getMinigroupInfo($module_info->site_srl);
+	$oMuduleModel = &getModel('module');
+	$modules = $oMuduleModel->getModulesInfoByLayout($module_info->layout_srl);
+	$articleCount = 0;
+}	
+<!--@if (count($modules)>0)-->
+	<!--@foreach($modules as $key => $module)-->
+	{@
+		$oDocumentModel = &getModel('document');
+		$documentCount = $oDocumentModel->getDocumentCount($module->module_srl);
+		$module_srl_array[$key] = $module->module_srl;
+		$articleCount += $documentCount;
+	}
+	<!--@end-->
+<!--@end-->
+{@
+	$oModuleModel = &getModel('module');
+	$siteAminInfo = $oModuleModel->getSiteAdmin($minigroupInfo->site_srl);
+
+	$arg->search_target = 'member_srl';
+	$arg->search_keyword = $logged_info->member_srl;
+	$arg->module_srl = $module_srl_array;
+	$oCommentModel = &getModel('comment');
+	$memberComments = $oCommentModel->getTotalCommentList($arg);
+	$comment_count = 0;
+	$reply_count = 0;
+}	
+
+<!--@if (count($memberComments->data)>0)-->
+	<!--@foreach($memberComments->data as $key => $comment)-->
+		<!--@if ($comment->parent_srl == 0)-->
+			{@ $comment_count++; }
+		<!--@else-->
+			{@ $reply_count++; }
+		<!--@end-->
+	<!--@end-->
+<!--@end-->
+{@ $group_count = count($logged_info->group_list);}
+			<div id="tabs">
+				<ul>
+					<li>
+						<a href="#minigroup_info">{$lang->minigroup_info}</a>
+					</li>
+					<li>
+						<a href="#member_info">{$lang->member_info}</a>
+					</li>
+				</ul>
+				<div id="minigroup_info">
+					<ul id='minigroup_info_area' class="widgetMyInfo">
+						<li><span>관리자</span><b>{$siteAminInfo[0]->nick_name}</b></li>
+						<li><span>게시물</span><em>{$articleCount}</em></li>
+						<li><span>시작일</span>{zdate($minigroupInfo->regdate,'Y.m.d')}</li>
+					</ul>
+				<!--@if(!$group_count)-->
+					<div class="btn_signup"><input type="button" class="btn" onclick="doSiteSignUp(); return false;" value="{$lang->cmd_site_signup}" ></div>
+				<!--@else-->
+					<div class="btn_signup"><input type="button" class="btn" onclick="doSiteLeave('{$lang->confirm_leave}'); return false;" value="{$lang->cmd_leave}"></div>
+				<!--@end-->
+				</div>
+				<div id="member_info">
+					<ul id="member_info_area" class="widgetMyInfo">
+						<li><span class="b">{$logged_info->nick_name}</span><a href="{getUrl('act','dispMemberModifyInfo')}"><img src="img/btn_edit.gif" width="26" height="13" alt="edit"></a></li>
+						<li><span>{$lang->cmd_reply}</span><em>{$comment_count}</em><span>{$lang->reply_to_comment}</span><em>{$reply_count}</em></li>
+						<li><span>{$lang->regdate}</span>{zdate($logged_info->regdate,'Y.m.d')}</li>
+					</ul>
+					<div class="btn_signup"><input type="button" class="btn" onclick="location.href='{getUrl('act','dispMemberLogout')}';return false;" value="{$lang->cmd_logout}" /></div>
+				</div>
+			</div>
+		</div>
+		<!-- CONTENT -->
+		<div class="content" id="content">
+			{$content}
+		</div>
+		<!-- /CONTENT -->
+	</div>
+	<!-- END:BODY -->
+
+	<div class="footer_wrap xe-clearfix">
+		<footer class="footer">
+			<!-- FNB -->
+{@
+	$home_state = ((($mid!='minigroups' && $act=='') || ($mid!='' && $mid!='home' && $act!='')) && $vid == '') ? 'active' : 'normal';
+	$mg_state = ($mid=='minigroups' || $vid!='') ? 'active' : 'normal';
+	$set_state = (($mid=='' || $mid=='home') && $act!='') ? 'active' : 'normal';
+}
+			<nav class="fnb" id="fnb">
+				<ul>
+					<li><a href="/prof_app/"><img src="{$layout_info->path}img/menu_home_{$home_state}.png" onmouseout="this.src='{$layout_info->path}img/menu_home_{$home_state}.png'" onmousedown="this.src='{$layout_info->path}img/menu_home_active.png'" alt="홈" /></a></li>
+					<li><a href="/prof_app/minigroups"><img src="{$layout_info->path}img/menu_minigroups_{$mg_state}.png" onmouseout="this.src='{$layout_info->path}img/menu_minigroups_{$mg_state}.png'" onmousedown="this.src='{$layout_info->path}img/menu_minigroups_active.png'" alt="소모임" /></a></li>
+					<li><a href="/prof_app/index.php?act=dispMemberInfo"><img src="{$layout_info->path}img/menu_settings_{$set_state}.png" onmouseout="this.src='{$layout_info->path}img/menu_settings_{$set_state}.png'" onmousedown="this.src='{$layout_info->path}img/menu_settings_active.png'" alt="설정" /></a></li>
+				</ul>
+			</nav>
+			
+			<!-- /FNB -->
+		</footer>
+	</div>
+</div>
+
+<!-- TOP -->
+<a href="#" class="btn_top"><i class="xi-angle-up"><span class="blind">{$lang->cmd_move_up}</span></i></a>
+<!-- /TOP -->
+
+<!-- Login widget -->
+<section cond="$layout_info->use_login_widget != 'N'" class="login_widget" style="display:none"|cond="$XE_VALIDATOR_ID != 'layouts/KnDol_AppStyle/layout/1' || !$XE_VALIDATOR_MESSAGE">
+	<load target="./css/widget.login.css" />
+	<div class="ly_dimmed"></div>
+	<div class="signin">
+		<div class="login-header">
+			<h1>LOGIN</h1>
+		</div>
+		<div class="login-body">
+			<form action="{getUrl()}" method="post" autocomplete="off">
+				<input type="hidden" name="act" value="procMemberLogin" />
+				<input type="hidden" name="success_return_url" value="{htmlspecialchars(getRequestUriByServerEnviroment(), ENT_COMPAT | ENT_HTML401, 'UTF-8', FALSE)}" />
+				<input type="hidden" name="xe_validator_id" value="layouts/KnDol_AppStyle/layout/1" />
+				<fieldset>
+					<legend class="blind">{$lang->cmd_login}</legend>
+					<div class="control-group">
+						<div class="group">
+							<input type="text" name="user_id" id="uemail" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+							<label class="info_label" for="uemail">{$lang->user_id}</label>
+						</div>
+						<div class="group">
+							<input type="password" name="password" id="upw" required="true" />
+							<span class="highlight"></span>
+							<span class="bar"></span>
+							<label class="info_label" for="upw">{$lang->password}</label>
+						</div>
+					</div>
+					<div cond="$XE_VALIDATOR_ID == 'layouts/KnDol_AppStyle/layout/1' && $XE_VALIDATOR_MESSAGE" class="control-group">
+						<p class="error">{$XE_VALIDATOR_MESSAGE}</p>
+					</div>
+					<div class="control-group">
+						<label class="chk_label" for="keepid_opt">
+							<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" />
+							<span class="checkbox"></span> {$lang->keep_signed}
+						</label>
+						<div id="warning">
+							<p>{str_replace('\n\n', '<br />', $lang->about_keep_signed)}</p>
+							<div class="edge"></div>
+						</div>
+						<button type="submit" class="btn_submit">{$lang->cmd_login}</button>
+					</div>
+				</fieldset>
+			</form>
+			<div cond="$layout_info->use_sns_login != 'N'" class="snsLogin">
+				<h2>{$lang->social} {$lang->cmd_login}</h2>
+				<a cond="!$layout_info->sns_facebook" class="xi-facebook" href="{$oSocialxeModel->snsAuthUrl('facebook', 'login')}" title="{$lang->sns_login_facebook}"><span class="blind">Facebook</span></a>
+				<a cond="!$layout_info->sns_twitter" class="xi-twitter" href="{$oSocialxeModel->snsAuthUrl('twitter', 'login')}" title="{$lang->sns_login_twitter}"><span class="blind">Twitter</span></a>
+				<a cond="!$layout_info->sns_google" class="xi-google-plus" href="{$oSocialxeModel->snsAuthUrl('google', 'login')}" title="{$lang->sns_login_google}"><span class="blind">Google</span></a>
+				<a cond="!$layout_info->sns_naver" class="xi-naver" href="{$oSocialxeModel->snsAuthUrl('naver', 'login')}" title="{$lang->sns_login_naver}"><span class="blind">Naver</span></a>
+				<a cond="!$layout_info->sns_kakao" class="xi-kakaotalk" href="{$oSocialxeModel->snsAuthUrl('kakao', 'login')}" title="{$lang->sns_login_kakao}"><span class="blind">Kakao</span></a>
+			</div>
+		</div>
+		<div class="login-footer">
+			<a href="{getUrl('act', 'dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a>
+			<span class="f_bar">|</span>
+			<a href="{getUrl('act', 'dispMemberSignUpForm')}">{$lang->cmd_signup}</a>
+		</div>
+		<a href="#" class="btn_ly_popup"><span class="blind">{$lang->cmd_close}</span></a>
+	</div>
+	<script>
+	jQuery(function ($) {
+		var keep_msg = $("#warning");
+		$(".chk_label").on("mouseenter mouseleave focusin focusout", function (e) {
+			if(e.type == "mouseenter" || e.type == "focusin") {
+				keep_msg.show();
+			}
+			else {
+				keep_msg.hide();
+			}
+		});
+		$("#ly_login_btn, #ly_btn").click(function () {
+			$(".login_widget").show();
+			return false;
+		});
+		$(".btn_ly_popup").click(function () {
+			$(".login_widget").hide();
+			return false;
+		});
+		$("input").blur(function () {
+			var $this = $(this);
+			if ($this.val()) {
+				$this.addClass("used");
+			}
+			else {
+				$this.removeClass("used");
+			}
+		});
+	});
+	</script>
+</section>
+<!-- /Login widget -->

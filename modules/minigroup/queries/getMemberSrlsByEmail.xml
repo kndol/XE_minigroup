@@ -1,0 +1,11 @@
+<query id="getMemberSrlsByEmail" action="select">
+    <tables>
+        <table name="member" />
+    </tables>
+    <columns>
+        <column name="member_srl"  />
+    </columns>
+    <conditions>
+        <condition operation="in" column="member.email_address" var="member_list" notnull="notnull" />
+    </conditions>
+</query>

@@ -1,0 +1,50 @@
+<load target="./js/jquery.scrollbox.min.js" />
+<load target="./css/widget.css" cond="$colorset != 'layout'" />
+<style>
+	ul.widgetA li {font-size:{$widget_info->title_size}}
+</style>
+
+<div class="widgetContainer<!--@if($colorset=='black')--> black<!--@end--> marquee">
+	<ul class="widgetA">
+	{@$_idx=0}
+	<!--@foreach($widget_info->notice_items as $key => $item)-->
+		<li<!--@if($widget_info->list_count && $_idx >= $widget_info->list_count)--> style="display:none"<!--@end-->>
+			<!--@foreach($widget_info->option_view_arr as $k => $v)-->
+			<a href="{$item->getLink()}">
+				<!--@if($v=='title')-->
+					<!--@if($widget_info->show_browser_title=='Y' && $item->getBrowserTitle())-->
+						<span class="board">{$item->getBrowserTitle()}</span>
+					<!--@end-->
+					<!--@if($widget_info->show_category=='Y' && $item->getCategory() )-->
+						<span class="category">{$item->getCategory()}</span>
+					<!--@end-->
+						<span class="notice">{$item->getTitle($widget_info->subject_cut_size)}</span>
+					<!--@if($widget_info->show_icon=='Y')-->
+						<span class="icon">{$item->printExtraImages()}</span>
+					<!--@end-->
+				<!--@else if($v=='username')-->
+					<span class="by">by</span> {$item->getUserName()}
+				<!--@else if($v=='nickname')-->
+					<span class="by">by</span> {$item->getNickName()}
+				<!--@else if($v=='regdate')-->
+					<span class="date">{$item->getRegdate("Y-m-d")}</span> <span class="hour">{$item->getRegdate("H:i")}</span>
+				<!--@end-->
+			</a>
+			<!--@end-->
+		</li>
+		{@$_idx++}
+	<!--@end-->
+	</ul>
+</div>
+
+<script>
+jQuery(document).ready(function(){
+	jQuery('.marquee').scrollbox({
+		linear:true,
+		delay:0,
+		step:1,
+		speed:100,
+		direction:'h'
+	});
+});
+</script>

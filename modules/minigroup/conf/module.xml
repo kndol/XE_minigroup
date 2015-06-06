@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants>
+		<grant name="list" default="member">
+			<title xml:lang="ko">목록</title>
+			<title xml:lang="en">list</title>
+		</grant>
+		<grant name="view" default="member">
+			<title xml:lang="ko">열람</title>
+			<title xml:lang="en">view</title>
+		</grant>
+		<grant name="write_document" default="member">
+			<title xml:lang="ko">글 작성</title>
+			<title xml:lang="en">write document</title>
+		</grant>
+		<grant name="write_comment" default="member">
+			<title xml:lang="ko">댓글 작성</title>
+			<title xml:lang="en">write comment</title>
+		</grant>
+    </grants>
+    <permissions>
+        <permission action="dispMinigroupAdminSiteManage" target="manager" />
+        <permission action="dispMinigroupAdminGrantInfo" target="manager" />
+        <permission action="dispMinigroupAdminSiteMemberGroupManage" target="manager" />
+        <permission action="dispMinigroupAdminSiteMemberManage" target="manager" />
+        <permission action="dispMinigroupAdminSiteCounter" target="manager" />
+        <permission action="dispMinigroupAdminSiteMidSetup" target="manager" />
+
+        <permission action="dispMinigroupCreate" target="member" />
+        
+		<permission action="getMinigroupMenuTplInfo" target="manager" />
+
+        <permission action="procMinigroupChangeLayout" target="manager" />
+        <permission action="procMinigroupInsertMenuItem" target="manager" />
+        <permission action="procMinigroupDeleteMenuItem" target="manager" />
+        <permission action="procMinigroupMenuItemMove" target="manager" />
+        <permission action="procMinigroupDeleteButton" target="manager" />
+        <permission action="procMinigroupDeleteGroup" target="manager" />
+        <permission action="procMinigroupInsertGroup" target="manager" />
+        <permission action="procMinigroupUpdateMemberGroup" target="manager" />
+        <permission action="procMinigroupDeleteMember" target="manager" />
+        <permission action="procMinigroupUpdateBoardSkin" target="manager" />
+        <permission action="procMinigroupUpdateSiteConfig" target="manager" />
+        <permission action="procMinigroupUpdateLayoutConfig" target="manager" />
+
+        <permission action="procMinigroupCreateMinigroup" target="member" />
+    </permissions>
+    <actions>
+        <action name="dispMinigroupIndex" type="view" index="true" />
+        <action name="dispMinigroupManage" type="view" />
+        <action name="dispMinigroupCreate" type="view" />
+
+        <action name="dispMinigroupAdminSiteManage" type="view" />
+        <action name="dispMinigroupAdminSiteMemberGroupManage" type="view" />
+        <action name="dispMinigroupAdminSiteMemberManage" type="view" />
+        <action name="dispMinigroupAdminSiteCounter" type="view" />
+        <action name="dispMinigroupAdminSiteMidSetup" type="view" />
+        <action name="dispMinigroupIS" type="view" />
+		<action name="dispMinigroupAdminGrantInfo" type="view" />
+
+        <action name="getMinigroupMenuItem" type="model" />
+        <action name="getMinigroupMenuTplInfo" type="model" />
+
+        <action name="procMinigroupCreateMinigroup" type="controller" ruleset="createMinigroup" />
+        <action name="procMinigroupChangeLayout" type="controller" />
+        <action name="procMinigroupInsertMenuItem" type="controller" ruleset="insertMenuItem" />
+        <action name="procMinigroupDeleteMenuItem" type="controller" />
+        <action name="procMinigroupMenuItemMove" type="controller" />
+        <action name="procMinigroupDeleteButton" type="controller" />
+        <action name="procMinigroupDeleteGroup" type="controller" />
+        <action name="procMinigroupInsertGroup" type="controller" />
+        <action name="procMinigroupDeleteMember" type="controller" />
+        <action name="procMinigroupUpdateMemberGroup" type="controller" />
+        <action name="procMinigroupUpdateSiteConfig" type="controller" ruleset="updateSiteConfig" />
+        <action name="procMinigroupUpdateLayoutConfig" type="controller" ruleset="updateLayout" />
+        <action name="procMinigroupSiteSignUp" type="controller" standalone="true" />
+        <action name="procMinigroupSiteLeave" type="controller" standalone="true" />
+
+        <action name="dispMinigroupAdminIndex" type="view" standalone="true" admin_index="true" menu_name="minigroup" menu_index="true" />
+        <action name="dispMinigroupAdminInsert" type="view" standalone="true" />
+        <action name="dispMinigroupAdminManage" type="view" standalone="true" />
+        <action name="dispMinigroupAdminSetup" type="view" />
+        <action name="dispMinigroupAdminSkinSetup" type="view" />
+        <action name="dispMinigroupAdminMobileSkinSetup" type="view" />
+        <action name="dispMinigroupAdminDelete" type="view" />
+
+        <action name="procMinigroupAdminInsertConfig" type="controller" />
+        <action name="procMinigroupAdminInsertMinigroup" type="controller" ruleset="insertMinigroup" />
+        <action name="procMinigroupAdminUpdateMinigroup" type="controller" reluset="updateMinigroup" />
+        <action name="procMinigroupAdminDeleteMinigroup" type="controller" />
+        <action name="procMinigroupAdminImportModule" type="controller" />
+        <action name="procMinigroupAdminExportModule" type="controller" />
+
+		<!-- for mobile skins -->
+		<action name="dispMinigroupMyMinigroup" type="view" />
+		<action name="dispMinigroupNewestDoc" type="view" />
+		<action name="dispMobileMinigroupSite" type="view" />
+		<action name="dispSiteMinigroupItems" type="view" />
+		<action name="dispMinigroupSiteInfo" type="view" />
+		<action name="dispMinigroupDocs" type="view" />
+
+    </actions>
+	<menus>
+		<menu name="minigroup" type="all">
+			<title xml:lang="en">minigroup</title>
+			<title xml:lang="ko">minigroup</title>
+		</menu>
+	</menus>
+</module>

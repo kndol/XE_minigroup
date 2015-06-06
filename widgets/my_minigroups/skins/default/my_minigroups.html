@@ -1,0 +1,76 @@
+{@ $oModuleController = getController('module'); }
+<load target="./css/style.css" />
+<div class="ct">
+	<div class="mod_head"><h2 class="mod_title">{$lang->board_list}</h2></div>
+	<div class="list">
+		<div class="container">
+			<ul>
+				<li class="fbox article" loop="$modules_info=>$key,$val" ><a href="{getUrl('mid', $val->mid,'act','')}">
+					{@ $oModuleController->replaceDefinedLangCode($val->browser_title); }
+					<span class="thumb">
+					<!--@if(stripos($val->mid, "notice") !== false)-->
+						<img src="./img/notice.png" alt="{$val->browser_title}" />
+					<!--@elseif(stripos($val->mid, "free") !== false)-->
+						<img src="./img/freeboard.png" alt="{$val->browser_title}" />
+					<!--@else-->
+						<img src="./img/board.png" alt="{$val->browser_title}" />
+					<!--@end-->
+					</span>
+					<ul class="flat meta">
+						<li class="title">{htmlspecialchars($val->browser_title)}<span class="iefix"></span></li>
+					</ul>
+				</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="mod_head"><h2 class="mod_title">{$lang->my_minigroups}</h2></div>
+	<div class="list">
+		<div class="container">
+<!--@if(count($my_minigroups))-->
+			<ul>
+				<li class="fbox article" loop="$my_minigroups=>$val" ><a href="{getUrl('mid', $val->domain,'act','')}" class="title">
+					<span class="thumb">
+					<!--@if($val->minigroup_icon)-->
+						<img src="{$val->minigroup_icon}" alt="{$val->minigroup_title}" />
+					<!--@else-->
+						<img src="img/minigroup.png" alt="{$val->minigroup_title}" />
+					<!--@end-->
+					</span>
+					<ul class="flat meta">
+						<li class="title">{htmlspecialchars($val->minigroup_title)}<span class="iefix"></span></li>
+						<li class="summary" cond="$val->minigroup_description">{cut_str(htmlspecialchars($val->minigroup_description),90)}</li>
+						<li class="member_count">
+							<img src="img/post.gif" width="15" height="13" alt="Members" style="width:15px;height:13px;vertical-align:middle">
+	  						<span style="vertical-align:middle">{$val->memberCount}</span>
+						</li>
+						<li class="date">{zdate($val->regdate,'Y-m-d H:i')}</li>
+					</ul>
+				</a></li>
+			</ul>
+<!--@else-->
+			{$lang->no_my_minigroup}
+<!--@end-->
+		</div>
+	<!--@if($my_minigroups_page_navigation->total_page > 1)-->
+		<div class="pagination">
+		<!--@if($my_minigroups_page_navigation->cur_page>1)-->
+			<a href="{getUrl('page', $my_minigroups_page_navigation->cur_page-1)}" class="pre" title="{$lang->prev}"><img src="img/btn_pre.gif" width="41" height="22" alt="previous page"></a>
+		<!--@else-->
+		    <a href="#" onclick="return false;" class="pre"><img src="img/btn_pre.gif" width="41" height="22" alt="previous page"></a>
+		<!--@end-->
+		<!--@while($page_no = $my_minigroups_page_navigation->getNextPage())-->
+			<!--@if($my_minigroups_page_navigation->cur_page == $page_no)-->
+			<strong class="page_num"><img src="img/current_page.gif" width="8" height="8" alt="{$page_no}" title="{$page_no}"></strong>
+			<!--@else-->
+			<a href="{getUrl('page',$page_no)}" class="page_num"><img src="img/non_current_page.gif" width="7" height="7" alt="{$page_no}" title="{$page_no}"></a>
+			<!--@end-->
+		<!--@end-->
+		<!--@if($my_minigroups_page_navigation->cur_page != $my_minigroups_page_navigation->total_page)-->
+			<a href="{getUrl('page', $my_minigroups_page_navigation->cur_page+1)}" class="next" title="{$lang->next}"><img src="img/btn_next.gif" width="41" height="22" alt="next page"></a>
+		<!--@else-->
+		    <a href="#" onclick="return false;" class="next"><img src="img/btn_next.gif" width="41" height="22" alt="next page"></a>
+		<!--@end-->
+		</div>
+	<!--@end-->
+	</div>
+</div>

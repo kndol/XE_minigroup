@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<!-- Sticky Notice Skin -->
+	<item name="closebutton">
+		<value xml:lang="ko"><![CDATA[노트 닫기]]></value>
+		<value xml:lang="en"><![CDATA[Close this note]]></value>
+	</item>
+	<item name="expiredays">
+		<value xml:lang="ko"><![CDATA[%d일 동안 다시 열지 않기]]></value>
+		<value xml:lang="en"><![CDATA[Do not re-open in %d days]]></value>
+	</item>
+</lang>

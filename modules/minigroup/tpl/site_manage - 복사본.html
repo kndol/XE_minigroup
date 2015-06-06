@@ -1,0 +1,300 @@
+<include target="_header.html" />
+<load target="./js/minigroup.js" />
+<load target="../../layout/tpl/js/layout_modify.js" />
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<form method="post" id="minigroupFo" onsubmit="return doUpdateMinigroup(this, '{$lang->select_date}', '{$lang->select_future}')" action="./" enctype="multipart/form-data" class="x_form-horizontal">
+	<input type="hidden" name="module" value="minigroup" />
+	<input type="hidden" name="layout_srl" value="{$selected_layout->layout_srl}" />
+	<input type="hidden" name="vid" value="{$site_module_info->domain}" cond="isSiteID($site_module_info->domain)" />
+	<input type="hidden" name="site_srl" value="{$minigroup_info->site_srl}" />
+	<input type="hidden" name="act" value="procMinigroupUpdateSiteConfig" />
+	<input type="hidden" name="minigroup_admin" value="" />
+	<input type="hidden" name="default_layout" value="{$minigroup_config->default_layout}" />
+	<input type="hidden" name="default_mlayout" value="{$minigroup_config->default_mlayout}" />
+	<input type="hidden" name="enable_change_layout" value="{$minigroup_config->enable_change_layout}" />
+	<input type="hidden" name="index_mid" value="{$index_mid}" />
+	<section class="section">
+		<h1>{$lang->minigroup_info}</h1>
+		<div class="x_control-group">
+			<label for="minigroup_title" class="x_control-label">{$lang->minigroup_title}</label>
+			<div class="x_controls">
+				<input type="text" name="minigroup_title" id="minigroup_title" value="{htmlspecialchars($minigroup_info->title)}" style="ime-mode:active;" /> 
+				<a href="#minigroup_title_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="minigroup_title_help" class="x_help-block" hidden>{$lang->about_minigroup_title}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="minigroup_description">{$lang->minigroup_description} (10~200)</label>
+			<div class="x_controls">
+				<textarea type="text" rows="8" cols="42" style="width:90%;" name="minigroup_description" id="minigroup_description" placeholder="{$lang->minigroup_description_placeholder}" title="{$lang->minigroup_description}" style="ime-mode:active;">{htmlspecialchars($minigroup_info->minigroup_description)}</textarea>
+				<a href="#description_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="description_help" class="x_help-block" hidden>{$lang->about_minigroup_description}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label">{$lang->minigroup_icon}</label>
+			<div class="x_controls">
+				<div id="preview_{$name}" cond="$minigroup_info->minigroup_icon">
+					<img src="{$minigroup_info->minigroup_icon}" alt="mini group icon" style="display:block;margin-bottom:10px;" cond="$minigroup_info->minigroup_icon"/>
+					<input type="checkbox" name="icon_del" value="Y"/>{$lang->cmd_delete}
+				</div>
+				<input type="file" name="minigroup_icon" />
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="signup_method">{$lang->minigroup_signup_method}</label>
+			<div class="x_controls">
+				<select name="signup_method" id="signup_method">
+					<option name="free_signup" value="free_signup" selected="selected"|cond="$minigroup_config->signup_method!='inviting'">{$lang->minigroup_free_signup}</option>
+					<option name="inviting" value="inviting" selected="selected"|cond="$minigroup_config->signup_method=='inviting'">{$lang->minigroup_inviting_signup}</option>
+				</select>
+				<div id="free_signup_help" hidden>
+					<a href="#free_signup_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="free_signup_help" class="x_help-block" hidden>{$lang->about_minigroup_free_signup}</p>
+				</div>
+				<div id="inviting_help" hidden>
+					<a href="#inviting_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="inviting_help" class="x_help-block" hidden>{$lang->about_minigroup_inviting}</p>
+				</div>
+				<div id="invitable_group">
+					<label for="inviting_default_group2" class="x_inline"><input type="radio" id="inviting_default_group2" name="invitable_group" value="group2" checked="checked"|cond="$minigroup_config->invitable_group=='group2'"> {$lang->default_groups['default_group2']}</label>
+					<label for="inviting_default_group3" class="x_inline"><input type="radio" id="inviting_default_group3" name="invitable_group" value="group3" checked="checked"|cond="$minigroup_config->invitable_group=='group3'"> {$lang->default_groups['default_group3']}</label>
+					<label for="inviting_default_group4" class="x_inline"><input type="radio" id="inviting_default_group4" name="invitable_group" value="group4" checked="checked"|cond="$minigroup_config->invitable_group=='group4'"> {$lang->default_groups['default_group4']}</label>
+					<label for="inviting_admin" class="x_inline"><input type="radio" id="inviting_admin" name="invitable_group" value="admin" checked="checked"|cond="$minigroup_config->invitable_group=='admin'||$minigroup_config->invitable_group==''"> {$lang->minigroup_admin}</label>
+				</div>
+				<div id="minigroup_visibility">
+					<label for="expose_to_list" class="x_inline"><input type="checkbox" name="expose_to_list" id="expose_to_list" value="Y" checked="checked"|cond="$minigroup_config->expose_to_list=='Y'"> {$lang->minigroup_expose_to_list}</label>
+					<a href="#expose_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="expose_help" class="x_help-block" hidden>{$lang->about_minigroup_expose}</p>
+				</div>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="default_group" class="x_inline">{$lang->default_group}</label>
+			<div class="x_controls" id="default_group">
+				<label for="default_group1" class="x_inline"><input type="radio" id="default_group1" name="default_group_no" value="1" checked="checked"|cond="$minigroup_config->default_group_no=='1'"> {$lang->default_groups['default_group1']}</label>
+				<label for="default_group2" class="x_inline"><input type="radio" id="default_group2" name="default_group_no" value="2" checked="checked"|cond="$minigroup_config->default_group_no=='2'"> {$lang->default_groups['default_group2']}</label>
+				<label for="default_group3" class="x_inline"><input type="radio" id="default_group3" name="default_group_no" value="3" checked="checked"|cond="$minigroup_config->default_group_no=='3'||$minigroup_config->default_group_no==''"> {$lang->default_groups['default_group3']}</label>
+				<a href="#default_group_no_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="default_group_no_help" class="x_help-block" hidden>{$lang->about_member_default}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="minigroup_lifespan_ltd">{$lang->minigroup_lifespan}</label>
+			<div class="x_controls" id="lifespan_limited">
+				<label for="limited_N" class="x_inline"><input type="radio" id="limited_N" name="lifespan_limited" value="N" checked="checked"|cond="$minigroup_config->lifespan_limited!='Y'" /> {$lang->minigroup_lifespan_not_limited}</label>
+				<label for="limited_Y" class="x_inline"><input type="radio" id="limited_Y" name="lifespan_limited" value="Y" checked="checked"|cond="$minigroup_config->lifespan_limited=='Y'" /> {$lang->minigroup_lifespan_limited}</label>
+				<div id="limit_date_ui">
+					<input type="hidden" name="limit_date" id="date_limit_date" value="" />
+					<input type="text" id="input_date" placeholder="YYYY-MM-DD" class="inputDate" value="{zdate($minigroup_config->limit_date, 'Y-m-d', false)}" readonly="readonly" />
+					<a href="#lifespan_limited_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="lifespan_limited_help" class="x_help-block" hidden>{$lang->about_minigroup_lifespan}</p>
+				</div>
+				<div id="limit_option">
+					<label for="disable_reading" class="x_inline"><input type="checkbox" id="disable_reading" name="disable_reading" value="Y" checked="checked"|cond="$minigroup_config->disable_reading=='Y'" /> {$lang->minigroup_disable_reading}</label>
+					<a href="#disable_reading_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="disable_reading_help" class="x_help-block" hidden>{$lang->about_minigroup_disable_reading}</p>
+				</div>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label for="admin_list" class="x_control-label">{$lang->minigroup_admin}</label>
+			<div class="x_controls">
+				{@ if($member_config->identifier == 'email_address') $inputType = $lang->email_address; else $inputType = $lang->user_id; }
+				<span class="x_input-append">
+					<select name="admin_list" id="admin_list" multiple="multiple" size="{count($admin_list)?count($admin_list):1}">
+						<option loop="$admin_list => $key,$val" value="<!--@if($member_config->identifier == 'email_address')-->{$val->email_address}<!--@else-->{$val->user_id}<!--@end-->">{$val->nick_name}(<!--@if($member_config->identifier == 'email_address')-->{$val->email_address}<!--@else-->{$val->user_id}<!--@end-->)</option>
+					</select>
+					<button type="button" onclick="doMinigroupDeleteAdmin()" class="x_btn">{$lang->cmd_delete}</button>
+				</span>
+				<br>
+				<span class="x_input-append" style="margin:5px 0 0 0">
+					<input type="text"|cond="$member_config->identifier != 'email_address'" type="email"|cond="$member_config->identifier == 'email_address'" name="admin_id" title="{$lang->minigroup_admin}" />
+					<button type="button" onclick="doMinigroupInsertAdmin()" class="x_btn">{$lang->cmd_insert}</button>
+				</span>
+				<a href="#about_minigroup_admin" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+				<p class="x_help-block" id="about_minigroup_admin" hidden>{sprintf($lang->about_minigroup_admin,$inputType)}</p>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="language">{$lang->default_language}</label>
+			<div class="x_controls">
+				<select name="language" id="language">
+					<option loop="$lang_supported => $key,$val" value="{$key}" selected="selected"|cond="$key==$site_module_info->default_language">{$val}</option>
+				</select>
+			</div>
+		</div>
+	</section>
+	<div class="btnArea">
+		<button class="x_btn x_btn-primary x_pull-right" type="submit">{$lang->cmd_save}</button>
+	</div>
+</form>
+{$grant_content}
+<form id="config_form" ruleset="updateLayout" action="./" enctype="multipart/form-data" method="post">
+	<input type="hidden" name="module" value="layout" />
+	<input type="hidden" name="act" value="procMinigroupUpdateLayoutConfig" />
+	<input type="hidden" name="layout_srl" value="{$selected_layout->layout_srl}" />
+	<input type="hidden" name="_layout_type" value="{$selected_layout->layout_type}" />
+	<!--// For submit config. Do not delete this division. -->
+	<div></div>
+</form>
+<section id="layout_config" class="x_form-horizontal section collapsed">
+	<h1>{$lang->cmd_layout_management}</h1>
+	<div cond="$selected_layout->path" class="x_control-group">
+		<label class="x_control-label">{$lang->path}</label>
+		<div class="x_controls" style="padding-top:5px">
+			<!--@if($minigroup_config->enable_change_layout == 'Y')-->
+			<select name="layout" id="layout">
+				<option loop="$layout_list => $key,$val" value="{$val->layout}" selected="selected"|cond="$selected_layout->layout == $val->layout"><!--@if($val->title)-->{$val->title}({$val->layout})<!--@else-->{$val->layout}<!--@end--></option>
+			</select>
+			<!--@else-->
+			{$selected_layout->path}
+			<!--@end-->
+		</div>
+	</div>
+	<div cond="$selected_layout->description" class="x_control-group">
+		<label class="x_control-label">{$lang->description}</label>
+		<div class="x_controls" style="padding-top:5px">
+			{$selected_layout->description}
+		</div>
+	</div>
+	<div cond="$selected_layout->author" class="x_control-group">
+		<label class="x_control-label">{$lang->author}</label>
+		<div class="x_controls" style="padding-top:5px">
+			<block loop="$selected_layout->author=>$author_info">
+				<!--@if($author_info->minigroup)-->
+				<a href="{$author_info->minigroup}" target="_blank">{$author_info->name}</a>
+				<!--@else-->
+				{$author_info->name}
+				<!--@end-->
+			</block>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="title">{$lang->title} <em>*</em></label>
+		<div class="x_controls">
+			<input type="text" id="title" name="title" value="{$selected_layout->layout_title}" />
+			<span class="x_help-block">{$lang->about_title}</span>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="header_script">{$lang->header_script}</label>
+		<div class="x_controls">
+			<textarea name="header_script" id="header_script" rows="4" cols="42">{$selected_layout->header_script}</textarea>
+			<span class="x_help-block">{$lang->about_header_script}</span>
+		</div>
+	</div>
+	<section class="section" cond="count($selected_layout->extra_var)">
+		<h1>{$lang->extra_vars}</h1>
+		{@$cnt = 1}
+		<block loop="$selected_layout->extra_var => $name, $var">
+			<block cond="$cnt == 1 && $var->group"><div class="x_tabbable"><ul class="x_nav x_nav-tabs"></block>
+			<block cond="$group != $var->group">
+				<li class="x_active"|cond="$cnt == 1"><a href="#extra_var{$cnt}" data-index="{$cnt}">{$var->group}</a></li>
+				{@$group = $var->group}
+				{@$cnt ++}
+			</block>
+		</block>
+		</ul>
+
+		{@$group = ''}
+		{@$cnt = 1}
+		
+		<block loop="$selected_layout->extra_var => $name, $var">
+		<block cond="$cnt == 1 && $var->group"><div class="x_tab-content"></block>
+			<block cond="$group != $var->group">
+				<block cond="$cnt != 1"></div></block>
+				<div style="display: none;"|cond="$cnt != 1" id="extra_var{$cnt}" class="x_tab-pane <!--@if($cnt == 1)-->x_active<!--@end-->" data-index="{$cnt}">
+				{@$group = $var->group}
+				{@$cnt ++}
+			</block>
+			<div class="x_control-group">
+				<label class="x_control-label" for="{$name}"|cond="$var->type!='text'&&$var->type!='textarea'" for="lang_{$name}"|cond="$var->type=='text'||$var->type=='textarea'">{$var->title}</label>
+				<div class="x_controls">
+					<div cond="$var->type == 'text'">
+						<input type="text" name="{$name}" id="{$name}" class="lang_code" value="<!--@if(strpos($var->value, "$user_lang->") !== false)-->{htmlspecialchars($var->value)}<!--@else-->{$var->value}<!--@end-->" />
+					</div>
+
+					<div cond="$var->type == 'textarea'">
+						{@$use_multilang_textarea = true}
+						<textarea name="{$name}" rows="4" cols="42" class="lang_code"><!--@if(strpos($var->value, "$user_lang->") !== false)-->{htmlspecialchars($var->value)}<!--@else-->{$var->value}<!--@end--></textarea>
+					</div>
+
+					<block cond="$var->type == 'image'">
+						<input type="hidden" name="{$name}" id="file_{$name}" value="{$var->value}" />
+						<div id="preview_{$name}" class="x_thumbnail" style="<!--@if(!$var->value)-->display:none;<!--@end-->max-width:210px;margin-bottom:20px;">
+							<img src="../../../{$var->value}"|cond="$var->value" alt="" style="max-width:100%" />
+							<div style="text-align:right">
+								<button class="x_icon-remove" type="button" onclick="deleteImage('{$name}')" title="{$lang->cmd_delete}">{$lang->cmd_delete}</button>
+							</div>
+						</div>
+						<form action="./" enctype="multipart/form-data" method="post" target="hiddenIframe" class="imageUpload" style="margin:0">
+							<input type="hidden" name="module" value="layout" />
+							<input type="hidden" name="act" value="procLayoutAdminConfigImageUpload" />
+							<input type="hidden" name="layout_srl" value="{$layout_srl}" />
+							<input type="hidden" name="name" value="{$name}" />
+							<p>
+								<input type="file" name="img" id="file_select_{$name}" value="" title="{$lang->uploaded_file}" />
+								<input class="x_btn" type="submit" value="{$lang->cmd_submit}" style="vertical-align:top" />
+							</p>
+						</form>
+					</block>
+
+					<select cond="$var->type == 'select'" name="{$name}" id="{$name}" style="width:auto">
+						<option loop="$var->options => $key, $val" value="{$key}" selected="selected"|cond="$key == $var->value">{$val->val}</option>
+					</select>
+
+					<block cond="$var->type == 'checkbox'">
+						<block loop="$var->options => $key, $val">
+							<label class="x_inline"><input type="checkbox" name="{$name}[]" value="{$key}" checked="checked"|cond="@in_array($key, $var->value)" /> {$val->val}</label>
+						</block>
+					</block>
+
+					<block cond="$var->type == 'radio'">
+						<div class="x_thumbnails">
+							<block loop="$var->options => $key, $val">
+								<div class="x_span2 <!--@if($val->thumbnail)-->x_thumbnail<!--@end-->">
+									<img src="../../../{$val->thumbnail}" cond="$val->thumbnail" alt="{$val->val}" />
+									<div class="x_caption">
+										<label><input type="radio" name="{$name}" value="{$key}" checked="checked"|cond="$key == $var->value" /> {$val->val}</label>
+									</div>
+								</div>
+							</block>
+						</div>
+					</block>
+					<block cond="$var->type == 'colorpicker'">
+						{@ $use_colorpicker = true; }
+						<input type="text" class="color-indicator" name="{$name}" id="{$name}" value="{$var->value}" />
+						<p id="categoy_color_help" hidden style="margin:8px 0 0 0">{$lang->about_category_color}</p>
+					</block>
+					<p class="x_help-block">{$var->description}</p>
+				</div>
+			</div>
+		</block>
+		<block cond="$group"></div></div></block>
+	</section>
+
+	<div class="btnArea">
+		<input class="x_btn x_btn-primary x_pull-right" type="submit" value="  {$lang->cmd_save}  " onclick="doSubmitConfig()"/>
+	</div>
+</section>
+<iframe name="hiddenIframe" src="about:blank" hidden></iframe>
+<script>
+<!--//#content가 있어야 언어 선택기 출력 가능 -->
+if(!jQuery('#content').length) jQuery('.x').parent().attr('id','content');
+jQuery(function($){
+	$(function(){
+		var option = { changeMonth: true, changeYear: true, gotoCurrent: true, yearRange:'0:+10', minDate:"0", dateFormat:'yy-mm-dd', onSelect:function()
+		{
+			$(this).prev('input[type="hidden"]').val(this.value.replace(/-/g,""))}
+		};
+		$.extend(option,$.datepicker.regional['{$lang_type}']);
+		$(".inputDate").datepicker(option);
+	});
+});
+</script>
+<!--@if($use_colorpicker)-->
+	<!--%load_js_plugin("ui.colorpicker")-->
+<!--@end-->

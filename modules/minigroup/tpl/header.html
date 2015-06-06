@@ -1,0 +1,15 @@
+<load target="./js/minigroup.js" />
+<load target="./filter/insert_config.xml" />
+<div class="x_page-header">
+	<h1>
+		{$lang->minigroup_management}
+		<a href="#aboutModule" data-toggle class="x_icon-question-sign">{$lang->help}</a>
+		<span class="path" cond="$minigroup_info">&gt; <a href="{getFullSiteUrl($minigroup_info->domain,'', 'act','dispMinigroupManage')}" target="_blank"|cond="$module=='admin'">{$minigroup_info->title}</a></span>
+	</h1>
+</div>
+<p class="x_alert x_alert-info" id="aboutModule" hidden>{nl2br($lang->about_minigroup)}</p>
+<ul class="x_nav x_nav-tabs" cond="$module_info && $act != 'dispMinigroupAdminDelete' && $act != 'dispMinigroupAdminSetup'">
+	<li class="x_active"|cond="$act=='dispMinigroupAdminIndex'"><a href="{getUrl('act','dispMinigroupAdminIndex','module_srl','')}">{$lang->minigroup_list}</a></li>
+	<li class="x_active"|cond="$act=='dispMinigroupAdminInsert'"><a href="{getUrl('act','dispMinigroupAdminInsert','module_srl')}">{$lang->cmd_make_minigroup}</a></li>
+	<li class="x_active"|cond="$act=='dispMinigroupAdminManage'"><a href="{getUrl('act','dispMinigroupAdminManage','module_srl')}">{$lang->cmd_minigroup_setup}</a></li>
+</ul>

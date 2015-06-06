@@ -1,0 +1,461 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="minigroup_welcome_title">
+		<value xml:lang="ko"><![CDATA[소모임을 성공적으로 설치했습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup has been installed successfully!]]></value>
+	</item>
+	<item name="minigroup">
+		<value xml:lang="ko"><![CDATA[소모임]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup]]></value>
+	</item>
+	<item name="minigroup_management">
+		<value xml:lang="ko"><![CDATA[소모임 관리]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup Management]]></value>
+	</item>
+	<item name="minigroup_id">
+		<value xml:lang="ko"><![CDATA[소모임 접속 ID]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup ID]]></value>
+	</item>
+	<item name="minigroup_domain">
+		<value xml:lang="ko"><![CDATA[소모임 접속 주소]]></value>
+		<value xml:lang="en"><![CDATA[Url of Minigroup]]></value>
+	</item>
+	<item name="minigroup_title">
+		<value xml:lang="ko"><![CDATA[소모임 이름]]></value>
+		<value xml:lang="en"><![CDATA[Title of minigroup]]></value>
+	</item>
+	<item name="minigroup_description">
+		<value xml:lang="ko"><![CDATA[소모임 설명]]></value>
+		<value xml:lang="en"><![CDATA[Description of minigroup]]></value>
+	</item>
+	<item name="minigroup_description_placeholder">
+		<value xml:lang="ko"><![CDATA[소모임에 대한 간단한 설명을 적으세요.]]></value>
+		<value xml:lang="en"><![CDATA[You can write down the brief description about this minigroup.]]></value>
+	</item>
+	<item name="minigroup_signup_method">
+		<value xml:lang="ko"><![CDATA[소모임 가입 방법]]></value>
+		<value xml:lang="en"><![CDATA[Signup Method]]></value>
+	</item>
+	<item name="minigroup_free_signup">
+		<value xml:lang="ko"><![CDATA[아무나 가입 가능]]></value>
+		<value xml:lang="en"><![CDATA[Everyone can sign up]]></value>
+	</item>
+	<item name="minigroup_inviting_signup">
+		<value xml:lang="ko"><![CDATA[초청에 의한 가입]]></value>
+		<value xml:lang="en"><![CDATA[Invited only]]></value>
+	</item>
+	<item name="about_minigroup_free_signup">
+		<value xml:lang="ko"><![CDATA[교수회 회원은 아무나 이 소모임에 가입할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Any member can sign up for this minigroup.]]></value>
+	</item>
+	<item name="about_minigroup_inviting">
+		<value xml:lang="ko"><![CDATA[선택한 그룹 이상의 권한을 가진 회원의 초청으로만 가입할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Only invited can be members of this minigroup.]]></value>
+	</item>
+	<item name="minigroup_expose_to_list">
+		<value xml:lang="ko"><![CDATA[이 소모임을 소모임 목록에 공개합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Anyone can see this minigroup in the list page.]]></value>
+	</item>
+	<item name="about_minigroup_expose">
+		<value xml:lang="ko"><![CDATA[선택하면 소모임의 회원이 아니라도 소모임 목록에서 이 소모임을 볼 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[If you check this, anyone can see this minigroup in the list page, even if he is not the member of this minigroup.]]></value>
+	</item>
+	<item name="minigroup_lifespan">
+		<value xml:lang="ko"><![CDATA[소모임 활동 종료 날짜]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup Lifespan]]></value>
+	</item>
+	<item name="minigroup_lifespan_not_limited">
+		<value xml:lang="ko"><![CDATA[지정하지 않음]]></value>
+		<value xml:lang="en"><![CDATA[Not Appointing]]></value>
+	</item>
+	<item name="minigroup_lifespan_limited">
+		<value xml:lang="ko"><![CDATA[지정한 날짜가 지나면 종료]]></value>
+		<value xml:lang="en"><![CDATA[Appoint]]></value>
+	</item>
+	<item name="about_minigroup_lifespan">
+		<value xml:lang="ko"><![CDATA[소모임 활동이 종료되면 게시판에 새로운 글을 작성할 수 없게 됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[After the end of the lifespan of this minigroup, members cannot post a new article.]]></value>
+	</item>
+	<item name="minigroup_disable_reading">
+		<value xml:lang="ko"><![CDATA[게시물 읽기도 제한]]></value>
+		<value xml:lang="en"><![CDATA[Disable reading articles]]></value>
+	</item>
+	<item name="about_minigroup_disable_reading">
+		<value xml:lang="ko"><![CDATA[선택하면 소모임 활동 종료 후에 게시물 읽기도 제한합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Select this option for prohibiting reading articles after lifespan]]></value>
+	</item>
+	<item name="minigroup_icon">
+		<value xml:lang="ko"><![CDATA[소모임 아이콘]]></value>
+		<value xml:lang="en"><![CDATA[Icon of Minigroup]]></value>
+	</item>
+	<item name="minigroup_list">
+		<value xml:lang="ko"><![CDATA[소모임 목록]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup List]]></value>
+	</item>
+	<item name="minigroup_list_skin">
+		<value xml:lang="ko"><![CDATA[소모임 목록 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup List Skin]]></value>
+	</item>
+	<item name="module_type">
+		<value xml:lang="ko"><![CDATA[대상]]></value>
+		<value xml:lang="en"><![CDATA[Type of target module]]></value>
+	</item>
+	<item name="module_id">
+		<value xml:lang="ko"><![CDATA[모듈 ID]]></value>
+		<value xml:lang="en"><![CDATA[module ID]]></value>
+	</item>
+	<item name="item_group_grant">
+		<value xml:lang="ko"><![CDATA[보여줄 그룹]]></value>
+		<value xml:lang="en"><![CDATA[Accessible group]]></value>
+	</item>
+	<item name="minigroup_info">
+		<value xml:lang="ko"><![CDATA[소모임 정보]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup Infomation]]></value>
+	</item>
+	<item name="minigroup_admin">
+		<value xml:lang="ko"><![CDATA[소모임 관리자]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup administrator]]></value>
+	</item>
+	<item name="do_selected_member">
+		<value xml:lang="ko"><![CDATA[선택된 회원을 : ]]></value>
+		<value xml:lang="en"><![CDATA[Change the selected members into : ]]></value>
+	</item>
+	<item name="new_minigroup">
+		<value xml:lang="ko"><![CDATA[생성된 소모임]]></value>
+		<value xml:lang="en"><![CDATA[New Minigroup]]></value>
+	</item>
+	<item name="minigroup_latest_documents">
+		<value xml:lang="ko"><![CDATA[소모임 최신 글]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup's latest documents]]></value>
+	</item>
+	<item name="minigroup_latest_comments">
+		<value xml:lang="ko"><![CDATA[소모임 최신 댓글]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup's latest comments]]></value>
+	</item>
+	<item name="minigroup_signup_date">
+		<value xml:lang="ko"><![CDATA[소모임 가입일]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup signup date]]></value>
+	</item>
+	<item name="my_minigroup_list">
+		<value xml:lang="ko"><![CDATA[가입한 소모임]]></value>
+		<value xml:lang="en"><![CDATA[Joined Minigroups]]></value>
+	</item>
+	<item name="minigroup_creation_type">
+		<value xml:lang="ko"><![CDATA[소모임 접속 방법]]></value>
+		<value xml:lang="en"><![CDATA[Type of Minigroup]]></value>
+	</item>
+	<item name="about_minigroup_creation_type">
+		<value xml:lang="ko"><![CDATA[사용자들이 소모임을 생성할때 소모임 접속 방법을 정해야 합니다. Site ID는 http://기본주소/ID 로 접속 가능하고 Domain 접속은 입력하신 도메인의 2차 도메인(http://domain.mydomain.net) 으로 소모임이 생성됩니다]]></value>
+		<value xml:lang="en"><![CDATA[Please choose how users access the created minigroup. If you choose Site ID, they would access via http://defaultAddr/SiteID, and in the case of Domain name, they would access via sub-domain of registered domain name, http://subdomain.defaultDomain]]></value>
+	</item>
+	<item name="minigroup_list_layout">
+		<value xml:lang="ko"><![CDATA[소모임 목록 레이아웃]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup's List layout]]></value>
+	</item>
+	<item name="list_skin">
+		<value xml:lang="ko"><![CDATA[소모임 목록 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Skin of Minigroup List]]></value>
+	</item>
+	<item name="list_mobile_skin">
+		<value xml:lang="ko"><![CDATA[소모임 목록 모바일 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Mobile Skin of Minigroup List]]></value>
+	</item>
+	<item name="list_mobile_layout">
+		<value xml:lang="ko"><![CDATA[소모임 목록 모바일 레이아웃]]></value>
+		<value xml:lang="en"><![CDATA[The Mobile Layout of Minigroup List]]></value>
+	</item>
+	<item name="board_skin">
+		<value xml:lang="ko"><![CDATA[소모임 게시판 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Skin of Minigroup Board]]></value>
+	</item>
+	<item name="about_board_skin">
+		<value xml:lang="ko"><![CDATA[소모임 게시판에서 사용할 스킨을 지정합니다.]]></value>
+		<value xml:lang="en"><![CDATA[You may set the skin of minigroup board]]></value>
+	</item>
+	<item name="board_mobile_skin">
+		<value xml:lang="ko"><![CDATA[소모임 게시판 모바일 스킨]]></value>
+		<value xml:lang="en"><![CDATA[Mobile Skin of Minigroup Board]]></value>
+	</item>
+	<item name="about_mobile_board_skin">
+		<value xml:lang="ko"><![CDATA[소모임 게시판에서 사용할 모바일용 스킨을 지정합니다.]]></value>
+		<value xml:lang="en"><![CDATA[You may set the mobile skin of minigroup board]]></value>
+	</item>
+	<item name="default_layout">
+		<value xml:lang="ko"><![CDATA[기본 레이아웃]]></value>
+		<value xml:lang="en"><![CDATA[Default layout]]></value>
+	</item>
+	<item name="mark">
+		<value xml:lang="ko"><![CDATA[마크]]></value>
+		<value xml:lang="en"><![CDATA[Mark]]></value>
+	</item>
+	<item name="about_site_individual_configure">
+		<value xml:lang="ko"><![CDATA[* 아래는 사이트 개별 설정 영역입니다. 이미 생성된 소모임에는 반영되지 않습니다.]]></value>
+		<value xml:lang="en"><![CDATA[* Below settings will be used when minigroups will be created newly.]]></value>
+	</item>
+	<item name="about_default_layout">
+		<value xml:lang="ko"><![CDATA[소모임이 생성될 때 설정될 기본 레이아웃을 지정할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You may set the default layout will be applied to newly created minigroups]]></value>
+	</item>
+	<item name="about_default_mlayout">
+		<value xml:lang="ko"><![CDATA[소모임이 생성될 때 설정될 모바일 레이아웃을 지정할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You may set the default mobile layout will be applied to newly created minigroups]]></value>
+	</item>
+	<item name="enable_change_layout">
+		<value xml:lang="ko"><![CDATA[레이아웃 변경]]></value>
+		<value xml:lang="en"><![CDATA[Allow change layout]]></value>
+	</item>
+	<item name="about_change_layout">
+		<value xml:lang="ko"><![CDATA[선택하시면 개별 소모임에서 레이아웃 변경을 허용할 수 있습니다]]></value>
+		<value xml:lang="en"><![CDATA[Allow each minigroup to change its layout]]></value>
+	</item>
+	<item name="allow_service">
+		<value xml:lang="ko"><![CDATA[허용 서비스]]></value>
+		<value xml:lang="en"><![CDATA[Allowed services]]></value>
+	</item>
+	<item name="about_allow_service">
+		<value xml:lang="ko"><![CDATA[개별 소모임에서 사용할 기본 서비스를 설정할 수 있습니다]]></value>
+		<value xml:lang="en"><![CDATA[You may configure default setting for the number and the type of services allowed in newly created minigroups]]></value>
+	</item>
+	<item name="cmd_more">
+		<value xml:lang="ko"><![CDATA[더 보기]]></value>
+		<value xml:lang="en"><![CDATA[More]]></value>
+	</item>
+	<item name="cmd_make_minigroup">
+		<value xml:lang="ko"><![CDATA[소모임 생성]]></value>
+		<value xml:lang="en"><![CDATA[Create Minigroup]]></value>
+	</item>
+	<item name="minigroup_creation_privilege">
+		<value xml:lang="ko"><![CDATA[소모임 생성 권한]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup Creation Privilege]]></value>
+	</item>
+	<item name="minigroup_main_mid">
+		<value xml:lang="ko"><![CDATA[소모임 목록 ID]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup List ID]]></value>
+	</item>
+	<item name="about_minigroup_main_mid">
+		<value xml:lang="ko"><![CDATA[소모임 목록 페이지를 http://주소/ID 값으로 접속하기 위한 ID값을 입력해주세요.<br /> 소모임 목록 페이지에서는 생성된 소모임 목록, 글목록 등을 조회할 수 있고 일반 사용자들의 소모임 생성을 도와줍니다.]]></value>
+		<value xml:lang="en"><![CDATA[Input an ID of minigroup's list page address, http://addr/minigroupID]]></value>
+	</item>
+	<item name="about_minigroup_list_layout">
+		<value xml:lang="ko"><![CDATA[소모임 목록의 레이아웃을 지정합니다.]]></value>
+		<value xml:lang="ko"><![CDATA[Choose the layout for the minigroup list page.]]></value>
+	</item>
+	<item name="default_groups" type="array">
+		<item name="minigroup_board">
+			<value xml:lang="ko"><![CDATA[소모임 게시판]]></value>
+			<value xml:lang="en"><![CDATA[Minigroup Board]]></value>
+		</item>
+		<item name="default_group1">
+			<value xml:lang="ko"><![CDATA[대기회원]]></value>
+			<value xml:lang="en"><![CDATA[Pending member]]></value>
+		</item>
+		<item name="default_group2">
+			<value xml:lang="ko"><![CDATA[준회원]]></value>
+			<value xml:lang="en"><![CDATA[Associate member]]></value>
+		</item>
+		<item name="default_group3">
+			<value xml:lang="ko"><![CDATA[정회원]]></value>
+			<value xml:lang="en"><![CDATA[Member]]></value>
+		</item>
+		<item name="default_group4">
+			<value xml:lang="ko"><![CDATA[운영진]]></value>
+			<value xml:lang="en"><![CDATA[Staff]]></value>
+		</item>
+	</item>
+	<item name="cmd_minigroup_admin_menus" type="array">
+		<item name="dispMinigroupAdminSiteManage">
+			<value xml:lang="ko"><![CDATA[소모임 설정]]></value>
+			<value xml:lang="en"><![CDATA[Configuration]]></value>
+		</item>
+		<!--item name="dispMinigroupAdminGrantInfo">
+			<value xml:lang="ko"><![CDATA[권한 설정]]></value>
+			<value xml:lang="en"><![CDATA[Permission Setting]]></value>
+		</item>
+		<item name="dispMinigroupAdminSiteMemberGroupManage">
+			<value xml:lang="ko"><![CDATA[회원그룹관리]]></value>
+			<value xml:lang="en"><![CDATA[Manage groups]]></value>
+		</item-->
+		<item name="dispMinigroupAdminSiteMemberManage">
+			<value xml:lang="ko"><![CDATA[회원 목록]]></value>
+			<value xml:lang="en"><![CDATA[Member List]]></value>
+		</item>
+		<item name="dispMinigroupAdminSiteCounter">
+			<value xml:lang="ko"><![CDATA[접속 통계]]></value>
+			<value xml:lang="en"><![CDATA[Connecting Status]]></value>
+		</item>
+	</item>
+	<item name="cmd_minigroup_registration">
+		<value xml:lang="ko"><![CDATA[소모임 만들기]]></value>
+		<value xml:lang="en"><![CDATA[Create a minigroup]]></value>
+	</item>
+	<item name="cmd_minigroup_setup">
+		<value xml:lang="ko"><![CDATA[소모임 설정]]></value>
+		<value xml:lang="en"><![CDATA[Configure a minigroup]]></value>
+	</item>
+	<item name="cmd_minigroup_list">
+		<value xml:lang="ko"><![CDATA[소모임 목록]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup list]]></value>
+	</item>
+	<item name="cmd_minigroup_basic_setup">
+		<value xml:lang="ko"><![CDATA[소모임 기본 설정]]></value>
+		<value xml:lang="en"><![CDATA[Configure minigroup]]></value>
+	</item>
+	<item name="cmd_minigroup_delete">
+		<value xml:lang="ko"><![CDATA[소모임 삭제]]></value>
+		<value xml:lang="en"><![CDATA[Delete minigroup]]></value>
+	</item>
+	<item name="cmd_go_minigroup_admin">
+		<value xml:lang="ko"><![CDATA[소모임 전체 관리]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup package]]></value>
+	</item>
+	<item name="cmd_change_layout">
+		<value xml:lang="ko"><![CDATA[변경]]></value>
+		<value xml:lang="en"><![CDATA[Change]]></value>
+	</item>
+	<item name="cmd_add_new_menu">
+		<value xml:lang="ko"><![CDATA[새로운 메뉴 추가]]></value>
+		<value xml:lang="en"><![CDATA[Add a new menu]]></value>
+	</item>
+	<item name="default_language">
+		<value xml:lang="ko"><![CDATA[기본 언어]]></value>
+		<value xml:lang="en"><![CDATA[Default Language]]></value>
+	</item>
+	<item name="about_default_language">
+		<value xml:lang="ko"><![CDATA[처음 접속하는 사용자의 언어 설정을 지정할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You may set the default language]]></value>
+	</item>
+	<item name="about_minigroup_act" type="array">
+		<item name="dispMinigroupAdminSiteManage">
+			<value xml:lang="ko"><![CDATA[소모임의 모양을 꾸밀 수 있습니다]]></value>
+			<value xml:lang="en"><![CDATA[You can decorate minigroup's layout here.]]></value>
+		</item>
+		<item name="dispMinigroupAdminGrantInfo">
+			<value xml:lang="ko"><![CDATA[소모임 게시판에 대한 권한을 설정할 수 있습니다.]]></value>
+			<value xml:lang="en"><![CDATA[You can set permissions for the board of this minigroup.]]></value>
+		</item>
+		<item name="dispMinigroupAdminSiteMemberGroupManage">
+			<value xml:lang="ko"><![CDATA[소모임 내에서 사용되는 사용자 그룹을 관리할 수 있습니다]]></value>
+			<value xml:lang="en"><![CDATA[You can manage groups used in this minigroup.]]></value>
+		</item>
+		<item name="dispMinigroupAdminSiteMemberManage">
+			<value xml:lang="ko"><![CDATA[소모임에 등록된 회원들을 보거나 관리할 수 있습니다]]></value>
+			<value xml:lang="en"><![CDATA[You can list up members registered and manage them.]]></value>
+		</item>
+		<item name="dispMinigroupAdminSiteCounter">
+			<value xml:lang="ko"><![CDATA[소모임의 접속 현황을 볼 수 있습니다]]></value>
+			<value xml:lang="en"><![CDATA[You can see the connecting status of Minigroup]]></value>
+		</item>
+	</item>
+	<item name="about_minigroup">
+		<value xml:lang="ko"><![CDATA[소모임 서비스 관리자는 다수의 소모임을 만들 수 있고 또 각 소모임을 편하게 설정할 수 있도록 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Minigroup package provides features to create minigroups and to configure them conveniently]]></value>
+	</item>
+	<item name="about_minigroup_title">
+		<value xml:lang="ko"><![CDATA[소모임의 이름을 지정하세요.]]></value>
+		<value xml:lang="en"><![CDATA[Specify the title of this minigroup.]]></value>
+	</item>
+	<item name="about_minigroup_description">
+		<value xml:lang="ko"><![CDATA[소모임에 대한 간단한 설명을 적어주세요. 소모임 페이지 상단에 표시됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[You can set the description about this minigroup. This is displayed at the top of the minigroup page.]]></value>
+	</item>
+	<item name="about_menu_option">
+		<value xml:lang="ko"><![CDATA[이 기능은 메뉴를 출력해주는 레이아웃이나 위젯에서 제공해주어야 동작합니다.]]></value>
+		<value xml:lang="en"><![CDATA[You can assign it to open a page in a new window when the menu clicked.<br />The option for menu expand may work depending on the layout.]]></value>
+	</item>
+	<item name="about_group_grant">
+		<value xml:lang="ko"><![CDATA[그룹을 선택하면 선택된 그룹만 메뉴가 보입니다.<br/>모두 해제하면 비회원도 볼 수 있습니다]]></value>
+		<value xml:lang="en"><![CDATA[If you select a group, only the group members can see the menu. (if xml file is directly opened, it will be shown.)]]></value>
+	</item>
+	<item name="about_module_type">
+		<value xml:lang="ko"><![CDATA[게시판 모듈을 생성하고 URL은 링크만 합니다.<br/>생성 후 수정할 수 없습니다]]></value>
+		<value xml:lang="en"><![CDATA[For board, it would create a module, and for URLs, it would make a link to the url.<br/> The type cannot be modified after creation.]]></value>
+	</item>
+	<item name="about_browser_title">
+		<value xml:lang="ko"><![CDATA[메뉴에 접속시 브라우저의 제목으로 나타날 내용입니다]]></value>
+		<value xml:lang="en"><![CDATA[It will be displayed on the title of the web browser, when users connect to the menu.]]></value>
+	</item>
+	<item name="about_module_id">
+		<value xml:lang="ko"><![CDATA[소모임 게시판을 접속할 때 사용될 주소입니다.<br/>예) http://도메인/[모듈ID], http://도메인/?mid=[모듈ID]]]></value>
+		<value xml:lang="en"><![CDATA[The module id will be used for accessing the minigroup board, <br /> ex) http://address/[moduleID]]]></value>
+	</item>
+	<item name="about_menu_item_url">
+		<value xml:lang="ko"><![CDATA[대상을 URL로 할때 연결할 링크주소입니다.<br/>http://는 빼고 입력해주세요]]></value>
+		<value xml:lang="en"><![CDATA[If the target is URL, input the address here <br />Do not include http://]]></value>
+	</item>
+	<item name="about_menu_image_button">
+		<value xml:lang="ko"><![CDATA[메뉴명 대신 이미지로 메뉴를 사용할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Instead of the title, the menu image can be used.]]></value>
+	</item>
+	<item name="about_minigroup_delete">
+		<value xml:lang="ko"><![CDATA[소모임을 삭제하게 되면 연결되어 있는 게시판과 그에 따른 글들이 삭제됩니다.<br />주의가 필요합니다]]></value>
+		<value xml:lang="en"><![CDATA[Caution! If you delete the minigroup, the board linked to the minigroup and all documents will be removed.]]></value>
+	</item>
+	<item name="about_minigroup_admin">
+		<value xml:lang="ko"><![CDATA[를 입력후 추가 버튼을 누른뒤 저장하세요. 소모임 관리자를 등록할 수 있습니다.<br/>소모임 관리자는 http://주소/?act=dispMinigroupAdminSiteManage 로 관리자 페이지로 접속할 수 있으며 존재하지 않는 사용자는 관리자로 등록되지 않습니다]]></value>
+		<value xml:lang="en"><![CDATA[You can set administrators of the minigroup. <br />The administrators can access the administration page via http://address/?act=dispMinigroupAdminSiteManage. Only existing IDs can be registered as administrator]]></value>
+	</item>
+	<item name="confirm_change_layout">
+		<value xml:lang="ko"><![CDATA[레이아웃을 변경할 경우 레이아웃 정보들 중 일부가 사라질 수가 있습니다. 변경하시겠습니까?]]></value>
+		<value xml:lang="en"><![CDATA[If you change the layout, some information of the layout might be reset. Would you like to change it?]]></value>
+	</item>
+	<item name="msg_not_enabled_id">
+		<value xml:lang="ko"><![CDATA[사용할 수 없는 아이디입니다]]></value>
+		<value xml:lang="en"><![CDATA[The ID cannot be used]]></value>
+	</item>
+	<item name="msg_greeting">
+		<value xml:lang="ko"><![CDATA[<strong>%s</strong>님 안녕하세요.]]></value>
+		<value xml:lang="en"><![CDATA[<strong>%s</strong> Welcome to minigroup]]></value>
+	</item>
+	<item name="newest_comment">
+		<value xml:lang="ko"><![CDATA[최근 댓글]]></value>
+		<value xml:lang="en"><![CDATA[Recent Comments]]></value>
+	</item>
+	<item name="addon_name">
+		<value xml:lang="ko"><![CDATA[애드온명]]></value>
+		<value xml:lang="en"><![CDATA[Addon name]]></value>
+	</item>
+	<item name="select_date">
+		<value xml:lang="ko"><![CDATA[소모임 활동이 끝나는 날짜를 선택해 주세요.]]></value>
+		<value xml:lang="en"><![CDATA[Please, select date.]]></value>
+	</item>
+	<item name="select_future">
+		<value xml:lang="ko"><![CDATA[소모임 활동이 끝나는 날짜는 오늘 이후만 설정할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[You must select the date after today.]]></value>
+	</item>
+	<item name="about_grant_registered">
+		<value xml:lang="ko"><![CDATA['가입한 사용자'는 소모임에 가입한 로그인 사용자를 의미합니다.]]></value>
+		<value xml:lang="en"><![CDATA['Registered users' mean users who signed-up to this minigroup.]]></value>
+	</item>
+	<item name="msg_cannot_leave_admin">
+		<value xml:lang="ko"><![CDATA[소모임 관리자는 탈퇴할 수 없습니다. 관리자 직위를 다른 사람에게 넘겨준 후 다시 시도해 주세요.]]></value>
+		<value xml:lang="en"><![CDATA[Admin cannot leave. Please hand over administration to other member and try again.]]></value>
+	</item>
+	<item name="msg_admin_must_exist">
+		<value xml:lang="ko"><![CDATA[소모임 관리자는 최소한 한 명 이상 있어야 합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Admin must be more than one person.]]></value>
+	</item>
+	<item name="board_list">
+		<value xml:lang="ko"><![CDATA[게시판]]></value>
+		<value xml:lang="en"><![CDATA[Boards]]></value>
+	</item>
+	<item name="my_minigroups">
+		<value xml:lang="ko"><![CDATA[가입한 소모임]]></value>
+		<value xml:lang="en"><![CDATA[Minigroups signed up]]></value>
+	</item>
+	<item name="about_minigroup_list">
+		<value xml:lang="ko"><![CDATA[현재 운영 중인 소모임의 목록입니다. 비밀 소모임은 나타나지 않습니다.]]></value>
+		<value xml:lang="en"><![CDATA[All active minigroups. Hidden minigroups are not displayed.]]></value>
+	</item>
+	<item name="about_make_minigroup">
+		<value xml:lang="ko"><![CDATA[새로운 소모임을 만듭니다. 소모임을 만든 사람이 최초 소모임 관리자가 됩니다.]]></value>
+		<value xml:lang="en"><![CDATA[Creating a new minigroup. You will be the default manager of the new minigroup.]]></value>
+	</item>
+	<item name="reply_to_comment">
+		<value xml:lang="ko"><![CDATA[덧글]]></value>
+		<value xml:lang="en"><![CDATA[Reply]]></value>
+	</item>
+	<item name="no_my_minigroup">
+		<value xml:lang="ko"><![CDATA[가입한 소모임이 없습니다.<br/>아래에 있는 '소모임' 아이콘을 눌러 소모임 페이지에서 소모임에 가입할 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[There's no minigroup you joined.<br/>You can join minigroups in minigroup page.]]></value>
+	</item>
+</lang>

@@ -1,0 +1,7 @@
+<table name="pollex_log">
+    <column name="poll_srl" type="number" size="11" notnull="notnull" index="idx_poll_srl" />
+    <column name="poll_item_srl" type="number" size="11" notnull="notnull" index="idx_poll_item_srl" />
+    <column name="member_srl" type="number" size="11" notnull="notnull" index="idx_member_srl" />
+    <column name="ipaddress" type="varchar" size="128" notnull="notnull" index="idx_ipaddress" />
+    <column name="regdate" type="date" />
+</table>

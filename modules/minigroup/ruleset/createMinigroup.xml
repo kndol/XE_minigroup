@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ruleset version="1.5.0">
+	<fields>
+		<field name="minigroup_id" length="4:12" filter="alpha_number" />
+		<field name="minigroup_title" required="true" length="4:40" />
+		<field name="minigroup_description" length="10:200" />
+	</fields>
+</ruleset>

@@ -1,0 +1,54 @@
+<include target="./header.html" />
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<form action="./" method="post" ruleset="insertMinigroup" class="x_form-horizontal section">
+	<input type="hidden" name="act" value="procMinigroupAdminInsertMinigroup" />
+	<h1>{$lang->cmd_make_minigroup}</h1>
+	<div class="x_control-group">
+		<label class="x_control-label" for="access_type">{$lang->access_type} (4~12)</label>
+		<div class="x_controls" id="access_type">
+			<label for="chkDomain" class="x_inline">
+				<input type="radio" id="chkDomain" name="access_type" value="domain" onclick="toggleAccessType('domain');" /> {$lang->access_domain}
+			</label>
+			<label for="chkVid" class="x_inline">
+				<input type="radio" id="chkVid" name="access_type" value="vid" onclick="toggleAccessType('vid');" checked="checked" /> {$lang->access_vid}
+			</label>
+			<div id="accessDomain" hidden style="margin-top:5px">
+				http://<input type="text" name="domain" placeholder="{$lang->minigroup_domain}" title="{$lang->minigroup_domain}" style="ime-mode:disabled;" />
+				<a href="#chkDomain_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="chkDomain_help" class="x_help-block" hidden>{$lang->about_domain}</p>
+			</div>
+			<div id="accessVid" style="margin-top:5px">
+				{getFullUrl()}<input type="text" name="minigroup_vid" placeholder="{$lang->minigroup_id}" title="{$lang->minigroup_id}" style="ime-mode:disabled;" />
+				<a href="#chkVid_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="chkVid_help" class="x_help-block" hidden>{$lang->about_vid}</p>
+			</div>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="minigroup_title">{$lang->minigroup_title} (4~10)</label>
+		<div class="x_controls">
+			<input type="text" name="minigroup_title" id="minigroup_title" placeholder="{$lang->minigroup_title}" title="{$lang->minigroup_title}" style="width:80%" style="ime-mode:active;" />
+			<a href="#minigroup_title_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="minigroup_title_help" class="x_help-block" hidden>{$lang->about_minigroup_title}</p>
+		</div>
+	</div>
+	<div class="x_control-group">
+		<label class="x_control-label" for="minigroup_description">{$lang->minigroup_description} (10~200)</label>
+		<div class="x_controls">
+			<textarea type="text" rows="8" cols="42" style="width:80%" name="minigroup_description" id="minigroup_description" placeholder="{$lang->minigroup_description_placeholder}" title="{$lang->minigroup_description}" style="ime-mode:active;">{htmlspecialchars($minigroup_info->minigroup_description)}</textarea>
+			<a href="#description_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+			<p id="description_help" class="x_help-block" hidden>{$lang->about_minigroup_description}</p>
+		</div>
+	</div>
+
+	<div class="btnArea">
+		<div class="x_pull-left">
+			<a href="{getUrl('act', 'dispMinigroupAdminIndex')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+		</div>
+		<div class="x_pull-right">
+			<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_registration}</button>
+		</div>
+	</div>
+</form>

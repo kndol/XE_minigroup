@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">내 소모임 목록 위젯 스킨</title>
+    <title xml:lang="en">My minigroup list widget skin</title>
+    <description xml:lang="ko">가입한 소모임 목록을 보여주는 위젯 스킨입니다.
+    큰돌 (kndol@kndol.net)
+    </description>
+    <description xml:lang="en">my minigroup widget skin
+    KnDol (kndol@kndol.net)
+    </description>
+    <version>0.1</version>
+    <date>2015-05-08</date>
+    <link>http://www.kndol.net/</link>
+
+    <author email_address="kndol@kndol.net" link="http://www.kndol.net/">
+        <name xml:lang="ko">큰돌</name>
+        <name xml:lang="en">KnDol</name>
+    </author>
+</skin>

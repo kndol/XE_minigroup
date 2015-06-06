@@ -1,0 +1,5 @@
+<filter name="insert_config" module="minigroup" act="procMinigroupAdminInsertConfig" confirm_msg_code="confirm_submit">
+    <form />
+    <parameter />
+    <response />
+</filter>

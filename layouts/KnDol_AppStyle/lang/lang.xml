@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang>
+	<item name="cmd_search_close">
+		<value xml:lang="ko"><![CDATA[검색창 닫기]]></value>
+		<value xml:lang="en"><![CDATA[Close Search]]></value>
+	</item>
+	<item name="sns_login_facebook">
+		<value xml:lang="ko"><![CDATA[Facebook 계정으로 로그인합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Login with your Facebook account]]></value>
+	</item>
+	<item name="sns_login_twitter">
+		<value xml:lang="ko"><![CDATA[Twitter 계정으로 로그인합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Login with your Twitter account]]></value>
+	</item>
+	<item name="sns_login_google">
+		<value xml:lang="ko"><![CDATA[Google+ 계정으로 로그인합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Login with your Google+ account]]></value>
+	</item>
+	<item name="sns_login_naver">
+		<value xml:lang="ko"><![CDATA[네이버 계정으로 로그인합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Login with your Naver account]]></value>
+	</item>
+	<item name="sns_login_kakao">
+		<value xml:lang="ko"><![CDATA[카카오 계정으로 로그인합니다.]]></value>
+		<value xml:lang="en"><![CDATA[Login with your Kakao account]]></value>
+	</item>
+</lang>

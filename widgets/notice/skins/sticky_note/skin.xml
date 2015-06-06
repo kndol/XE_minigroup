@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">Sticky Note - 공지사항 위젯 스킨</title>
+    <title xml:lang="en">Sticky Note - Notice Widget Skin</title>
+    <description xml:lang="ko">포스트잇 스타일의 Notice 위젯 스킨입니다. css3를 사용하여 익스플로러8에서는 기울기 등이 표시되지 않습니다. </description>
+    <description xml:lang="en">Sticky note style.</description>
+    <version>1.0.4</version>
+    <date>2014-06-05</date>
+    <link>http://www.kndol.net/</link>
+    <author email_address="kndol@kndol.net" link="http://www.kndol.net/">
+        <name xml:lang="ko">큰돌</name>
+        <name xml:lang="en">KnDol</name>
+    </author>
+
+    <colorset>
+        <color name="">
+            <title xml:lang="ko">기본값</title>
+            <title xml:lang="en">Default</title>
+        </color>
+    </colorset>
+</skin>

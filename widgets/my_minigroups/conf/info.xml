@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">소모임 목록 위젯</title>
+	<title xml:lang="en">Minigroup List Widget</title>
+	<description xml:lang="ko">사이트 내 게시판 목록과 회원이 가입한 소모임 목록을 표시하는 위젯입니다.</description>
+	<description xml:lang="en">This widget displays boards of main site and minigroups which member signs up.</description>
+	<version>0.1</version>
+	<date>2015-05-08</date>
+	<author email_address="kndol@kndol.net" link="http://www.kndol.net/">
+		<name xml:lang="ko">큰돌</name>
+		<name xml:lang="en">KnDol</name>
+	</author>
+	<extra_vars>
+		<group>
+			<var id="module_srls">
+				<type>module_srl_list</type>
+				<name xml:lang="ko">보여줄 게시판</name>
+				<name xml:lang="en">Boards to show</name>
+				<description xml:lang="ko">선택한 게시판을 추가로 표시합니다.</description>
+				<description xml:lang="en">Show selected boards in addition.</description>
+			</var>
+	   </group>
+	</extra_vars>
+</widget>

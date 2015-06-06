@@ -1,0 +1,46 @@
+<!--#include("_header.html")-->
+<load target="../../../admin/tpl/css/admin.bootstrap.min.css" />
+<load target="../../../admin/tpl/css/admin.min.css" />
+<!--@if($lang_type=="ko")-->
+<load target="../../../admin/tpl/css/admin_ko.css" />
+<!--@elseif($lang_type=="jp")-->
+<load target="../../../admin/tpl/css/admin_jp.css" />
+<!--@else-->
+<load target="../../../admin/tpl/css/admin_en.css" />
+<!--@end-->
+<load target="../../../admin/tpl/css/admin.iefix.css" targetie="IE" />
+<load target="../../../admin/tpl/js/admin.js" />
+
+<div cond="$XE_VALIDATOR_MESSAGE" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<p>{$XE_VALIDATOR_MESSAGE}</p>
+</div>
+<div class="minigroupBody shrinked-width">
+	<div class="createMinigroup x">
+        <form action="./" method="post" class="x_form-horizontal section" ruleset="createMinigroup">
+			<input type="hidden" name="act" value="procMinigroupCreateMinigroup" />
+			<div class="x_control-group">
+				<label class="x_control-label" for="minigroup_title">{$lang->minigroup_title} (4~20)</label>
+				<div class="x_controls">
+					<input type="text" name="minigroup_title" id="minigroup_title" placeholder="{$lang->minigroup_title}" title="{$lang->minigroup_title}" style="width:80%" style="ime-mode:active;" />
+					<a href="#minigroup_title_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="minigroup_title_help" class="x_help-block" hidden>{$lang->about_minigroup_title}</p>
+				</div>
+			</div>
+			<div class="x_control-group">
+				<label class="x_control-label" for="minigroup_description">{$lang->minigroup_description} (10~200)</label>
+				<div class="x_controls">
+					<textarea type="text" rows="8" cols="42" style="width:80%" name="minigroup_description" id="minigroup_description" placeholder="{$lang->minigroup_description_placeholder}" title="{$lang->minigroup_description}" style="ime-mode:active;"></textarea>
+					<a href="#description_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+					<p id="description_help" class="x_help-block" hidden>{$lang->about_minigroup_description}</p>
+				</div>
+			</div>
+		
+			<div class="btnArea">
+				<div class="x_pull-right x_btn-group">
+					<a href="{getUrl('act', '')}" type="button" class="x_btn">{$lang->cmd_cancel}</a>
+					<button class="x_btn x_btn-primary" type="submit">{$lang->cmd_make_minigroup}</button>
+				</div>
+			</div>
+		</form>
+    </div>
+</div>

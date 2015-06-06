@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">소모임</title>
+    <title xml:lang="en">Mini-Group</title>
+    <description xml:lang="ko">XE 내에서 소모임 게시판 기능을 제공합니다.</description>
+    <description xml:lang="en">Making and managing Mini Group in XE</description>
+    <version>1.0.0.0</version>
+    <date>2015-04-20</date>
+    <category>package</category>
+
+    <author email_address="kndol@kndol.net" link="http://www.kndol.net/">
+    <name xml:lang="ko">큰돌</name>
+	<name xml:lang="en">KnDol</name>
+    </author>
+</module>

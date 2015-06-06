@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+	<title xml:lang="ko">큰돌 앱 스타일 레이아웃</title>
+	<title xml:lang="en">KnDol AppStyle Layout</title>
+	<description xml:lang="ko">앱과 통일성을 주기 위한 레이아웃</description>
+	<description xml:lang="en">The layout for unity with the app.</description>
+	<version>0.0.1</version>
+	<date>2015-05-08</date>
+	<link>http://www.kndol.net/</link>
+	<author email_address="kndol@kndol.net" link="http://www.kndol.net/">
+		<name xml:lang="ko">큰돌</name>
+		<name xml:lang="en">KnDol</name>
+	</author>
+	<menus>
+		<menu name="FNB" maxdepth="2">
+			<title xml:lang="ko">하단 메인 메뉴</title>
+			<title xml:lang="en">Bottom Main Menu</title>
+		</menu>
+	</menus>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">기본</title>
+			<title xml:lang="en">Basic</title>
+			<var name="enable_intergration_search" type="select">
+				<title xml:lang="ko">통합 검색</title>
+				<title xml:lang="en">Intergration Search</title>
+				<options value="Y">
+					<title xml:lang="ko">사용</title>
+					<title xml:lang="en">Enable</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안 함</title>
+					<title xml:lang="en">Disable</title>
+				</options>
+			</var>
+			<var name="logo_img" type="image">
+				<title xml:lang="ko">사이트 로고 이미지</title>
+				<title xml:lang="en">Site Logo Image</title>
+			</var>
+			<var name="logo_text" type="text">
+				<title xml:lang="ko">사이트 로고 문자</title>
+				<title xml:lang="en">Site Logo Text</title>
+			</var>
+			<var name="logo_url" type="text">
+				<title xml:lang="ko">사이트 로고 링크 주소</title>
+				<title xml:lang="en">Site Logo Link Address</title>
+			</var>
+			<var name="use_login_widget" type="select">
+				<title xml:lang="ko">로그인 위젯 사용</title>
+				<title xml:lang="en">Login Widget</title>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+					<title xml:lang="en">Enable</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안 함</title>
+					<title xml:lang="en">Disable</title>
+				</options>
+			</var>
+			<var name="use_sns_login" type="select">
+				<title xml:lang="ko">소셜 로그인 사용</title>
+				<title xml:lang="en">SNS Login</title>
+				<options value="Y">
+					<title xml:lang="ko">사용함</title>
+					<title xml:lang="en">Enable</title>
+				</options>
+				<options value="N">
+					<title xml:lang="ko">사용 안 함</title>
+					<title xml:lang="en">Disable</title>
+				</options>
+			</var>
+		</group>
+	</extra_vars>
+</layout>

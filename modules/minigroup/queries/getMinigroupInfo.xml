@@ -1,0 +1,20 @@
+<query id="getMinigroupInfo" action="select">
+    <tables>
+        <table name="minigroups" />
+        <table name="sites" />
+        <table name="modules" />
+    </tables>
+    <columns>
+        <column name="minigroups.*" />
+        <column name="minigroups.layout_srl" alias="minigroup_layout_srl"/>
+        <column name="minigroups.mlayout_srl" alias="minigroup_mlayout_srl"/>
+        <column name="minigroups.description" alias="minigroup_description"/>
+        <column name="sites.domain" alias="domain" />
+        <column name="modules.*" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="minigroups.site_srl" var="site_srl" filter="number" notnull="notnull" />
+        <condition operation="equal" column="sites.site_srl" default="minigroups.site_srl" filter="number" notnull="notnull" pipe="and" />
+        <condition operation="equal" column="modules.module_srl" default="sites.index_module_srl" pipe="and" />
+    </conditions>
+</query>

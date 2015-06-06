@@ -1,0 +1,11 @@
+<query id="getMemberSrlsByUserID" action="select">
+    <tables>
+        <table name="member" />
+    </tables>
+    <columns>
+        <column name="member_srl"  />
+    </columns>
+    <conditions>
+        <condition operation="in" column="member.user_id" var="member_list" notnull="notnull" />
+    </conditions>
+</query>

@@ -1,0 +1,66 @@
+<load target="./css/widget.css" />
+<!--%load_js_plugin("ui")-->
+<load target="./js/cookie.js" />
+<load cond="Mobile::isMobilePadCheckByAgent()" target="./js/jquery.ui.touch-punch.min.js" type="body" />
+<load target="./js/widget.js" type="body" />
+{@Context::loadLang($widget_info->skin_path . '/lang')}
+<!--@if(Mobile::isFromMobilePhone())-->
+{@$itm_style = ""}
+<!--@else-->
+{@$itm_style = ";min-width:".$widget_info->min_width.";max-width:".$widget_info->max_width.";min-height:".$widget_info->min_height.";max-height:".$widget_info->max_height}
+<!--@end-->
+<script type="text/javascript">
+	isMobile=<!--@if(Mobile::isFromMobilePhone())-->true<!--@else-->false<!--@end-->;
+	isPad=<!--@if(Mobile::isMobilePadCheckByAgent())-->true<!--@else-->false<!--@end-->;
+	resizeImages=<!--@if($widget_info->resize_images!="No")-->true<!--@else-->false<!--@end-->;
+	resizeVideos=<!--@if($widget_info->resize_videos!="No")-->true<!--@else-->false<!--@end-->;
+</script>
+
+<div class="wgt_sticky_note" style="height:{$widget_info->widget_height}">
+	<img cond="$widget_info->bg_image" class="wgt_sticky_note_bg" src="{$widget_info->bg_image}" <!--@if(!Mobile::isFromMobilePhone() && $widget_info->bg_width!=0 && $widget_info->bg_height!=0)-->style="width:{$widget_info->bg_width}; height:{$widget_info->bg_height};" width="{$widget_info->bg_width}" height="{$widget_info->bg_height}"<!--@else-->style="width:100%; height:auto;" width="100%" height="auto"<!--@endif--> alt="Sticky Note Bacground" />
+	<span cond="$widget_info->show_random!='N'" class="mask"><button type="button" class="wgt_sticky_note_btn" title="Random Position">Random</button></span>
+
+	{@$i=0}
+	<!--@foreach($widget_info->tab as $module_srl => $tab)-->
+	{@$widget_info->notice_items = $tab->notice_items}
+	{@$_idx=0}
+	<!--@foreach($widget_info->notice_items as $key => $item)-->
+	<div class="wgt_sticky_note_itm color{$i}" style="z-index:{$widget_info->zindex-$i}{$itm_style}" state="" zi="{$widget_info->zindex-$i}">
+		<span class="deco"></span>
+        <!--@foreach($widget_info->option_view_arr as $k => $v)-->
+            <!--@if($v=='title')-->
+				<h3 class="title" style="font-size:{$widget_info->title_size}">
+					{@$_category=$item->getCategory()}
+					<span cond="$widget_info->show_browser_title=='Y' || ($widget_info->show_category=='Y' && $_category!='')">[<span cond="$widget_info->show_browser_title=='Y'"><a href="{$tab->url}">{$tab->title}</a></span><span cond="$widget_info->show_category=='Y' && $_category!=''">::{$_category}</span>] </span>
+					<a href="{$item->getLink()}">{$item->getTitle($widget_info->subject_cut_size)}</a><span cond="$widget_info->show_icon=='Y'" class="icon"> {$item->printExtraImages()}</span>
+				</h3>
+            <!--@else if($v=='nickname')-->
+            	{@$_display_nickname=1}
+            <!--@else if($v=='regdate')-->
+            	{@$_display_date=1}
+            <!--@else if($v=='content')-->
+            	{@$_display_content=1}
+            <!--@end-->
+        <!--@end-->
+		<div class="doc">
+			<span class="date"><!--@if($_display_date)-->{$item->getRegdate("d/F/Y")}<!--@if($_display_nickname)--> <!--@end--><!--@end--><!--@if($_display_nickname)-->by {$item->getNickName()}<!--@end--></span>
+			<div class="content" style="font-size:{$widget_info->content_size}"><!--@if($_display_content)-->{$item->getContent($widget_info->content_cut_size)}<!--@end--></div>
+			<div class="expiredays" cond="$widget_info->use_closebutton != 'No'"><input cond="$widget_info->use_closebutton != 'No' && $widget_info->expiredays" type="checkbox" class="expireCheck" name="expireCheck"><label cond="$widget_info->use_closebutton != 'No'" for="expireCheck"><!--@if($widget_info->expiredays)-->{sprintf($lang->expiredays, $widget_info->expiredays)}<!--@else-->{$lang->closebutton}<!--@end--></label> <img class="closeButton" src="{$widget_info->skin_path}/img/close.png" width="13px" height="13px" style="border:0" noteId="{$i}" srl="{$item->getSrl()}" expiredays="{$widget_info->expiredays}" baseUrl="{$item->getModuleSrl()}"></div>
+		</div>
+	</div>
+	{@$i++}
+	{@$_idx++}<!--@end-->
+	<!--@end-->
+</div>
+
+<!--[if lt IE 9]>
+<script type="text/javascript">
+	jQuery(function($){
+		var p = $('div.wgt_sticky_note');
+		var o = p.find('div.wgt_sticky_note_itm');
+		o.each(function(){
+			$(this).find('div.content').css({fontWeight:'bolder'});
+		});
+	});
+</script>
+<![endif]-->

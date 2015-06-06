@@ -1,0 +1,4 @@
+<filter name="export_module" module="minigroup" act="procMinigroupAdminExportModule">
+    <form />
+    <response />
+</filter>

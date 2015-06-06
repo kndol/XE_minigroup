@@ -1,0 +1,16 @@
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=yes" />
+<!--%import("./css/style.css")-->
+{@ Context::addJsFile("./common/js/xe.min.js", true, '', 100000) }
+{@ Context::addJsFile("./common/js/jquery.min.js", true, '', 0) }
+<div class="minigroupHeader">
+    <div class="mod_head">
+        <h2 class="mod_title"><!--@if($act=='')-->{$lang->minigroup_list}<!--@else-->{$lang->cmd_make_minigroup}<!--@end--></h2>
+        <!--@if($act=='')-->
+        <a href="{getUrl('act','dispMinigroupCreate')}" title="{$lang->cmd_make_minigroup}" class="btn_left" cond="$isEnableCreateMinigroup"><span class="btn_right">&nbsp; <i class="xi-magic"></i> {$lang->cmd_make_minigroup} &nbsp;</span></a>
+        <!--@else-->
+        <a href="{getUrl('act','')}" title="{$lang->minigroup_list}" class="btn_back_left"><span class="btn_right">&nbsp; <i class="xi-list-ul-l"></i> {$lang->minigroup_list} &nbsp;</span></a>
+        <!--@end-->
+    </div>
+    <p class="minigroupDescription"><!--@if($act=='')-->{$lang->about_minigroup_list}<!--@else-->{$lang->about_make_minigroup}<!--@end--></p>
+</div>

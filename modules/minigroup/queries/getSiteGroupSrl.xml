@@ -1,0 +1,12 @@
+<query id="getSiteGroupSrl" action="select">
+    <tables>
+        <table name="member_group" />
+    </tables>
+    <columns>
+        <column name="group_srl" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="member_group.site_srl" var="site_srl" notnull="notnull" />
+		<condition operation="equal" column="member_group.title" var="title" notnull="notnull" pipe="and" />
+    </conditions>
+</query>
