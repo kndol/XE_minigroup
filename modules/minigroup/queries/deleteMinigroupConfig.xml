@@ -1,0 +1,8 @@
+<query id="deleteMinigroupConfig" action="delete">
+    <tables>
+        <table name="module_config" />
+    </tables>
+    <conditions>
+        <column name="module" default="minigroup" />
+    </conditions>
+</query>

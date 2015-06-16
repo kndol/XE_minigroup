@@ -1,5 +1,5 @@
 /**
- * @file   modules/poll/js/poll_admin.js
+ * @file   modules/pollex/js/poll_admin.js
  * @author NAVER (developers@xpressengine.com)
  * @brief  poll 모듈의 관리자용 javascript
  **/
@@ -14,7 +14,7 @@ function doDisplaySkinColorset(sel, colorset) {
 
     var response_tags = new Array("error","message","colorset_list");
 
-    exec_xml("poll", "getPollGetColorsetList", params, completeGetSkinColorset, response_tags, params);
+    exec_xml("pollex", "getPollexGetColorsetList", params, completeGetSkinColorset, response_tags, params);
 }
 
 /* 서버에서 받아온 컬러셋을 표시 */
@@ -44,7 +44,7 @@ function doMovePoll(poll_srl, upload_target_srl) {
     params['upload_target_srl'] = upload_target_srl;
 
     var response_tags = new Array('error','message','document_srl','comment_srl');
-    exec_xml('poll','getPollAdminTarget', params, completeMovePoll, response_tags);
+    exec_xml('pollex','getPollexAdminTarget', params, completeMovePoll, response_tags);
 }
 
 function completeMovePoll(ret_obj, response_tags) {

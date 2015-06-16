@@ -1,4 +1,4 @@
-<filter name="delete_checked" module="poll" act="procPollAdminDeleteChecked" confirm_msg_code="confirm_delete">
+<filter name="delete_checked" module="pollex" act="procPollexAdminDeleteChecked" confirm_msg_code="confirm_delete">
     <form>
         <node target="cart" required="true" />
     </form>

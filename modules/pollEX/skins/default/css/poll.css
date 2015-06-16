@@ -27,6 +27,8 @@
 .poll_table td.poll_content div.noborder{border-bottom:none;margin-bottom:10px}
 .poll_table td.poll_content div.checkcount{border-bottom:1px dashed #EDEDED;padding:0 0 8px 10px;margin-bottom:3px;text-align:right;color:#636363}
 .poll_table tr.cap>td{font-size:0;line-height:0;height:7px;overflow:hidden}
+.poll_table .pull-right{float:right;margin-right:15px}
+.poll_table .pull-left{float:left;margin-left:15px}
 
 @media screen and (max-width:420px){
 .poll_box {width:100%}

@@ -1,0 +1,25 @@
+<query id="getPollexByDeletePollTitle" action="select">
+	<tables>
+		<table name="pollex_title" alias="PT"/>
+	</tables>
+	<columns>
+		<column name="poll_srl" />
+		<column name="count(poll_index_srl)" alias="count" />
+	</columns>
+	<conditions>
+		<query operation="equal" column="PT.poll_srl" notnull="notnull" alias="getPollexSrl">
+			<tables>
+				<table name="pollex_title" alias="SPT"/>
+			</tables>
+			<columns>
+				<column name="poll_srl" alias="poll_srl" />
+			</columns>
+			<conditions>
+				<condition operation="equal" column="SPT.poll_index_srl" var="poll_index_srl" notnull="notnull" />
+			</conditions>
+		</query>
+	</conditions>
+	<groups>
+		<group column="poll_srl" />
+	</groups>
+</query>

@@ -12,17 +12,17 @@
 
 <div id="poll_{$poll->poll_srl}" class="poll_box">
 
-	<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/poll/skins/!kndol/form/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
+	<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/pollex/skins/default/form/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
 		<p>{$XE_VALIDATOR_MESSAGE}</p>
 	</div>
     <form ruleset="poll" action="./" method="post" onsubmit="return doPoll(this)">
-	<input type="hidden" name="module" value="poll" />
-	<input type="hidden" name="act" value="procPoll" />
+	<input type="hidden" name="module" value="pollex" />
+	<input type="hidden" name="act" value="procPollex" />
     <input type="hidden" name="poll_srl" value="{$poll->poll_srl}" />
     <input type="hidden" name="poll_srl_indexes" value="" />
     <input type="hidden" name="skin" value="{$skin}" />
 	<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
-	<input type="hidden" name="xe_validator_id" value="modules/poll/skins/!kndol/form/1" />
+	<input type="hidden" name="xe_validator_id" value="modules/pollex/skins/default/form/1" />
     <table cellspacing="0" class="poll_table">
     <col width="7" />
     <col />
@@ -77,8 +77,8 @@
     <tr>
         <td colspan="3" class="poll_button">
             <div>
-                <input type="button" value="{$lang->cmd_view_result}" class="btn poll_button _poll_result _srl_{$poll->poll_srl} _skin_{$skin}" />
-                <input type="submit" value="{$lang->cmd_apply_poll}" class="btn poll_button" />
+                <input type="button" value="{$lang->cmd_view_result}" class="btn poll_button pull-left _poll_result _srl_{$poll->poll_srl} _skin_{$skin}" cond="($poll->option->show_result=='Y'&&$poll->option->voter_result=='N'&&$poll->option->expire_result=='N')||$poll->researcher==true" />
+                <input type="submit" value="{$lang->cmd_apply_poll}" class="btn poll_button pull-right" />
             </div>
         </td>
     </tr>

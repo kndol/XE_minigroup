@@ -1,11 +1,11 @@
 <?php
 /* Copyright (C) KnDol <http://www.kndol.net> */
 /**
- * @class  pollEXAdminController
+ * @class  pollexAdminController
  * @author KnDol (kndol@kndol.net)
- * @brief The admin controller class of the pollEX module
+ * @brief The admin controller class of the pollex module
  */
-class pollEXAdminController extends pollEX
+class pollexAdminController extends pollex
 {
 	/**
 	 * @brief Initialization
@@ -17,115 +17,115 @@ class pollEXAdminController extends pollEX
 	/**
 	 * @brief Save the configurations
 	 */
-	function procPollAdminInsertConfig()
+	function procPollexAdminInsertConfig()
 	{
 		$config = new stdClass;
 		$config->skin = Context::get('skin');
 		$config->colorset = Context::get('colorset');
 
 		$oModuleController = getController('module');
-		$oModuleController->insertModuleConfig('pollEX', $config);
+		$oModuleController->insertModuleConfig('pollex', $config);
 
 		$this->setMessage('success_updated');
 
-		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispPollAdminConfig');
+		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispPollexAdminConfig');
 		$this->setRedirectUrl($returnUrl);
 	}
 
 	/**
-	 * @brief Delete the pollEXs selected in the administrator's page
+	 * @brief Delete the polls selected in the administrator's page
 	 */
-	function procPollAdminDeleteChecked()
+	function procPollexAdminDeleteChecked()
 	{
 		// Display an error no post is selected
 		$cart = Context::get('cart');
 
-		if(is_array($cart)) $pollEX_srl_list = $cart;
-		else $pollEX_srl_list= explode('|@|', $cart);
+		if(is_array($cart)) $poll_srl_list = $cart;
+		else $poll_srl_list= explode('|@|', $cart);
 
-		$pollEX_count = count($pollEX_srl_list);
-		if(!$pollEX_count) return $this->stop('msg_cart_is_null');
+		$poll_count = count($poll_srl_list);
+		if(!$poll_count) return $this->stop('msg_cart_is_null');
 		// Delete the post
-		for($i=0;$i<$pollEX_count;$i++)
+		for($i=0;$i<$poll_count;$i++)
 		{
-			$pollEX_index_srl = trim($pollEX_srl_list[$i]);
-			if(!$pollEX_index_srl) continue;
+			$poll_index_srl = trim($poll_srl_list[$i]);
+			if(!$poll_index_srl) continue;
 
-			$output = $this->deletePollTitle($pollEX_index_srl, true);
+			$output = $this->deletePollexTitle($poll_index_srl, true);
 			if(!$output->toBool()) return $output;
 		}
 
-		$this->setMessage( sprintf(Context::getLang('msg_checked_pollEX_is_deleted'), $pollEX_count) );
+		$this->setMessage( sprintf(Context::getLang('msg_checked_poll_is_deleted'), $poll_count) );
 
-		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispPollAdminList');
+		$returnUrl = Context::get('success_return_url') ? Context::get('success_return_url') : getNotEncodedUrl('', 'module', 'admin', 'act', 'dispPollexAdminList');
 		$this->setRedirectUrl($returnUrl);
 	}
 
-	function procPollAdminAddCart()
+	function procPollexAdminAddCart()
 	{
-		$pollEX_index_srl = (int)Context::get('pollEX_index_srl');
+		$poll_index_srl = (int)Context::get('poll_index_srl');
 
-		$oPollAdminModel = getAdminModel('pollEX');
+		$oPollAdminModel = getAdminModel('pollex');
 		//$columnList = array('comment_srl');
 		$args = new stdClass;
-		$args->pollEXIndexSrlList = array($pollEX_index_srl);
+		$args->pollexIndexSrlList = array($poll_index_srl);
 		$args->list_count = 100;
 
-		$output = $oPollAdminModel->getPollList($args);
+		$output = $oPollAdminModel->getPollexList($args);
 
 		if(is_array($output->data))
 		{
 			foreach($output->data AS $key=>$value)
 			{
-				if($_SESSION['pollEX_management'][$value->pollEX_index_srl]) unset($_SESSION['pollEX_management'][$value->pollEX_index_srl]);
-				else $_SESSION['pollEX_management'][$value->pollEX_index_srl] = true;
+				if($_SESSION['pollex_management'][$value->poll_index_srl]) unset($_SESSION['pollex_management'][$value->poll_index_srl]);
+				else $_SESSION['pollex_management'][$value->poll_index_srl] = true;
 			}
 		}
 	}
 
 	/**
-	 * @brief Delete the pollEX (when several questions are registered in one pollEX, delete this question)
+	 * @brief Delete the pollex (when several questions are registered in one pollex, delete this question)
 	 */
-	function deletePollTitle($pollEX_index_srl) 
+	function deletePollexTitle($poll_index_srl) 
 	{
 		$args = new stdClass;
 		$dargs = new stdClass;
 
-		$args->pollEX_index_srl = $pollEX_index_srl;
+		$args->poll_index_srl = $poll_index_srl;
 
 		$oDB = &DB::getInstance();
 		$oDB->begin();
 
-		$output = executeQueryArray('pollEX.getPollByDeletePollTitle', $args);
+		$output = executeQueryArray('pollex.getPollexByDeletePollTitle', $args);
 		if($output->toBool() && $output->data && $output->data[0]->count == 1)
 		{
-			$dargs->pollEX_srl = $output->data[0]->pollEX_srl;
+			$dargs->poll_srl = $output->data[0]->poll_srl;
 		}
 
-		$output = $oDB->executeQuery('pollEX.deletePollTitle', $args);
+		$output = $oDB->executeQuery('pollex.deletePollexTitle', $args);
 		if(!$output)
 		{
 			$oDB->rollback();
 			return $output;
 		}
 
-		$output = $oDB->executeQuery('pollEX.deletePollItem', $args);
+		$output = $oDB->executeQuery('pollex.deletePollexItem', $args);
 		if(!$output)
 		{
 			$oDB->rollback();
 			return $output;
 		}
 
-		if($dargs->pollEX_srl)
+		if($dargs->poll_srl)
 		{
-			$output = executeQuery('pollEX.deletePoll', $dargs);
+			$output = executeQuery('pollex.deletePollex', $dargs);
 			if(!$output)
 			{
 				$oDB->rollback();
 				return $output;
 			}
 
-			$output = executeQuery('pollEX.deletePollLog', $dargs);
+			$output = executeQuery('pollex.deletePollexLog', $dargs);
 			if(!$output)
 			{
 				$oDB->rollback();
@@ -138,31 +138,31 @@ class pollEXAdminController extends pollEX
 	}
 
 	/**
-	 * @brief Delete the pollEX (delete the entire pollEX)
+	 * @brief Delete the pollex (delete the entire pollex)
 	 */
-	function deletePoll($pollEX_srl)
+	function deletePollex($poll_srl)
 	{
 		$args = new stdClass;
-		$args->pollEX_srl = $pollEX_srl;
+		$args->poll_srl = $poll_srl;
 
 		$oDB = &DB::getInstance();
 		$oDB->begin();
 
-		$output = $oDB->executeQuery('pollEX.deletePoll', $args);
+		$output = $oDB->executeQuery('pollex.deletePollex', $args);
 		if(!$output)
 		{
 			$oDB->rollback();
 			return $output;
 		}
 
-		$output = $oDB->executeQuery('pollEX.deletePollTitle', $args);
+		$output = $oDB->executeQuery('pollex.deletePollexTitle', $args);
 		if(!$output)
 		{
 			$oDB->rollback();
 			return $output;
 		}
 
-		$output = $oDB->executeQuery('pollEX.deletePollItem', $args);
+		$output = $oDB->executeQuery('pollex.deletePollexItem', $args);
 		if(!$output)
 		{
 			$oDB->rollback();
@@ -174,5 +174,5 @@ class pollEXAdminController extends pollEX
 		return new Object();
 	}
 }
-/* End of file pollEX.admin.controller.php */
-/* Location: ./modules/pollEX/pollEX.admin.controller.php */
+/* End of file pollex.admin.controller.php */
+/* Location: ./modules/pollex/pollex.admin.controller.php */

@@ -1,0 +1,8 @@
+<query id="deleteMinigroupList" action="delete">
+    <tables>
+        <table name="modules" />
+    </tables>
+    <columns>
+        <column name="module" default="minigroup" />
+    </columns>
+</query>

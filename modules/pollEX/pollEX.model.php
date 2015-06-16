@@ -1,11 +1,11 @@
 <?php
 /* Copyright (C) KnDol <http://www.kndol.net> */
 /**
- * @class  pollEXModel
+ * @class  pollexModel
  * @author KnDol (kndol@kndol.net)
- * @brief The model class for the pollEX modules
+ * @brief The model class for the pollex modules
  */
-class pollEXModel extends pollEX
+class pollexModel extends pollex
 {
 	/**
 	 * @brief Initialization
@@ -15,12 +15,12 @@ class pollEXModel extends pollEX
 	}
 
 	/**
-	 * @brief The function examines if the user has already been pollEXed
+	 * @brief The function examines if the user has already been polled
 	 */
-	function isPolled($pollEX_srl)
+	function isPolled($poll_srl)
 	{
 		$args = new stdClass;
-		$args->pollEX_srl = $pollEX_srl;
+		$args->poll_srl = $poll_srl;
 
 		if(Context::get('is_logged'))
 		{
@@ -31,54 +31,78 @@ class pollEXModel extends pollEX
 		{
 			$args->ipaddress = $_SERVER['REMOTE_ADDR'];
 		}
-		$output = executeQuery('pollEX.getPollLog', $args);
+		$output = executeQuery('pollex.getPollexLog', $args);
 		if($output->data->count) return true;
 		return false;
 	}
 
 	/**
 	 * @brief Return the HTML data of the survey
-	 * Return the result after checking if the pollEX has responses
+	 * Return the result after checking if the pollex has responses
 	 */
-	function getPollHtml($pollEX_srl, $style = '', $skin = 'default')
+	function getPollexHtml($poll_srl, $style = '', $skin = 'default', $show_retult = false)
 	{
 		$args = new stdClass;
-		$args->pollEX_srl = $pollEX_srl;
+		$args->poll_srl = $poll_srl;
 		// Get the information related to the survey
-		$columnList = array('pollEX_count', 'stop_date');
-		$output = executeQuery('pollEX.getPoll', $args, $columnList);
+		$columnList = array('member_srl', 'poll_count', 'stop_date', 'option');
+		$output = executeQuery('pollex.getPollex', $args, $columnList);
 		if(!$output->data) return '';
+		$logged_info = Context::get('logged_info');
 
-		$pollEX = new stdClass;
-		$pollEX->style = $style;
-		$pollEX->pollEX_count = (int)$output->data->pollEX_count;
-		$pollEX->stop_date = $output->data->stop_date;
+		$pollex = new stdClass;
+		$pollex->style = $style;
+		$pollex->researcher = $logged_info->is_admin=='Y' || $logged_info->member_srl == $output->data->member_srl;
+		$pollex->poll_count = (int)$output->data->poll_count;
+		$pollex->stop_date = $output->data->stop_date;
+		$pollex->option = unserialize($output->data->option);
 
-		$columnList = array('pollEX_index_srl', 'title', 'checkcount', 'pollEX_count');
-		$output = executeQuery('pollEX.getPollTitle', $args, $columnList);
+		$columnList = array('poll_index_srl', 'title', 'checkcount', 'poll_count');
+		$output = executeQuery('pollex.getPollexTitle', $args, $columnList);
 		if(!$output->data) return;
 		if(!is_array($output->data)) $output->data = array($output->data);
 
-		$pollEX->pollEX = array();
+		$pollex->poll = array();
 		foreach($output->data as $key => $val)
 		{
-			$pollEX->pollEX[$val->pollEX_index_srl] = new stdClass;
-			$pollEX->pollEX[$val->pollEX_index_srl]->title = $val->title;
-			$pollEX->pollEX[$val->pollEX_index_srl]->checkcount = $val->checkcount;
-			$pollEX->pollEX[$val->pollEX_index_srl]->pollEX_count = $val->pollEX_count;
+			$pollex->poll[$val->poll_index_srl] = new stdClass;
+			$pollex->poll[$val->poll_index_srl]->title = $val->title;
+			$pollex->poll[$val->poll_index_srl]->checkcount = $val->checkcount;
+			$pollex->poll[$val->poll_index_srl]->poll_count = $val->poll_count;
 		}
 
-		$output = executeQuery('pollEX.getPollItem', $args);
+		$output = executeQuery('pollex.getPollexItemWithMember', $args);
+debugPrint($output);
+		$i = -1;
 		foreach($output->data as $key => $val)
 		{
-			$pollEX->pollEX[$val->pollEX_index_srl]->item[] = $val;
+			if ($i<0 || $pollex->poll[$val->poll_index_srl]->item[$i]->poll_item_srl != $val->poll_item_srl)
+			{
+				if ($i<0) $pollex->poll[$val->poll_index_srl]->item = array();
+				$pollex->poll[$val->poll_index_srl]->item[++$i] = new stdClass;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->poll_item_srl = $val->poll_item_srl;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->poll_srl = $val->poll_srl;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->poll_index_srl = $val->poll_index_srl;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->upload_target_srl = $val->upload_target_srl;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->title = $val->title;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->poll_count = $val->poll_count;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->members = array();
+			}
+			if ($val->member_srl != '')
+			{
+				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl] = new stdClass;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl]->member_srl = $val->member_srl;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl]->user_name = $val->user_name;
+				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl]->regdate = $val->regdate;
+			}
 		}
+debugPrint($pollex);
 
-		$pollEX->pollEX_srl = $pollEX_srl;
-		// Only ongoing pollEX results
-		if($pollEX->stop_date > date("Ymd"))
+		$pollex->poll_srl = $poll_srl;
+		// Only ongoing pollex results
+		if(!$show_retult && $pollex->stop_date > date("Ymd"))
 		{
-			if($this->isPolled($pollEX_srl)) $tpl_file = "result";
+			if($this->isPolled($poll_srl)) $tpl_file = "result";
 			else $tpl_file = "form";
 		}
 		else
@@ -86,7 +110,7 @@ class pollEXModel extends pollEX
 			$tpl_file = "result";
 		}
 
-		Context::set('pollEX',$pollEX);
+		Context::set('poll',$pollex);
 		Context::set('skin',$skin);
 		// The skin for the default configurations, and the colorset configurations
 		$tpl_path = sprintf("%sskins/%s/", $this->module_path, $skin);
@@ -98,54 +122,15 @@ class pollEXModel extends pollEX
 	/**
 	 * @brief Return the result's HTML
 	 */
-	function getPollResultHtml($pollEX_srl, $skin = 'default')
+	function getPollexResultHtml($poll_srl, $skin = 'default')
 	{
-		$args = new stdClass;
-		$args->pollEX_srl = $pollEX_srl;
-		// Get the information related to the survey
-		$output = executeQuery('pollEX.getPoll', $args);
-		if(!$output->data) return '';
-
-		$pollEX = new stdClass;
-		$pollEX->style = $style;
-		$pollEX->pollEX_count = (int)$output->data->pollEX_count;
-		$pollEX->stop_date = $output->data->stop_date;
-
-		$columnList = array('pollEX_index_srl', 'title', 'checkcount', 'pollEX_count');
-		$output = executeQuery('pollEX.getPollTitle', $args, $columnList);
-		if(!$output->data) return;
-		if(!is_array($output->data)) $output->data = array($output->data);
-
-		$pollEX->pollEX = array();
-		foreach($output->data as $key => $val)
-		{
-			$pollEX->pollEX[$val->pollEX_index_srl] = new stdClass;
-			$pollEX->pollEX[$val->pollEX_index_srl]->title = $val->title;
-			$pollEX->pollEX[$val->pollEX_index_srl]->checkcount = $val->checkcount;
-			$pollEX->pollEX[$val->pollEX_index_srl]->pollEX_count = $val->pollEX_count;
-		}
-
-		$output = executeQuery('pollEX.getPollItem', $args);
-		foreach($output->data as $key => $val)
-		{
-			$pollEX->pollEX[$val->pollEX_index_srl]->item[] = $val;
-		}
-
-		$pollEX->pollEX_srl = $pollEX_srl;
-
-		$tpl_file = "result";
-
-		Context::set('pollEX',$pollEX);
-		// The skin for the default configurations, and the colorset configurations
-		$tpl_path = sprintf("%sskins/%s/", $this->module_path, $skin);
-
-		$oTemplate = &TemplateHandler::getInstance();
-		return $oTemplate->compile($tpl_path, $tpl_file);
+		return $this->getPollexHtml($poll_srl, '', $skin, true);
 	}
+
 	/** [TO REVIEW]
-	 * @brief Selected pollEX - return the colorset of the skin
+	 * @brief Selected pollex - return the colorset of the skin
 	 */
-	function getPollGetColorsetList()
+	function getPollexGetColorsetList()
 	{
 		$skin = Context::get('skin');
 
@@ -162,5 +147,5 @@ class pollEXModel extends pollEX
 		$this->add('colorset_list', $colorsets);
 	}
 }
-/* End of file pollEX.model.php */
-/* Location: ./modules/pollEX/pollEX.model.php */
+/* End of file pollex.model.php */
+/* Location: ./modules/pollex/pollex.model.php */

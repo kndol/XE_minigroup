@@ -1,4 +1,4 @@
-<filter name="insert_config" module="poll" act="procPollAdminInsertConfig" confirm_msg_code="confirm_update">
+<filter name="insert_config" module="pollex" act="procPollexAdminInsertConfig" confirm_msg_code="confirm_update">
     <form>
         <node target="skin" required="true" />
         <node target="colorset" required="true" />

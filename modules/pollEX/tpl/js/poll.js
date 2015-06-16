@@ -62,8 +62,8 @@ jQuery(function($){
 		}
 
 		exec_xml(
-			'poll', // module
-			'procPollViewResult', // act
+			'pollex', // module
+			'procPollexViewResult', // act
 			{poll_srl:srl, skin:skin}, // parameters
 			on_complete,
 			['error','message','tpl']

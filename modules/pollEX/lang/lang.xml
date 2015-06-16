@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <lang>
-	<item name="poll">
-		<value xml:lang="ko"><![CDATA[설문]]></value>
-		<value xml:lang="en"><![CDATA[Poll]]></value>
+	<item name="pollex">
+		<value xml:lang="ko"><![CDATA[설문EX]]></value>
+		<value xml:lang="en"><![CDATA[PollEX]]></value>
 		<value xml:lang="jp"><![CDATA[アンケート調査]]></value>
 		<value xml:lang="zh-CN"><![CDATA[投票系统]]></value>
 		<value xml:lang="zh-TW"><![CDATA[投票調查]]></value>
@@ -249,5 +249,13 @@
 		<value xml:lang="en"><![CDATA[Selected poll]]></value>
 		<value xml:lang="jp"><![CDATA[選択したアンケート]]></value>
 		<value xml:lang="zh-TW"><![CDATA[已選擇的投票]]></value>
+	</item>
+	<item name="displayed_after_expiration">
+		<value xml:lang="ko"><![CDATA[설문 참여에 감사드립니다. 설문 종료 후에 결과를 보실 수 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Thanks for your vote. You can see the poll result after the poll ends.]]></value>
+	</item>
+	<item name="result_not_displayed">
+		<value xml:lang="ko"><![CDATA[설문 참여에 감사드립니다. 이 설문은 설문을 작성한 사람만 결과를 볼 수 있도록 설정되어 있습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Thanks for your vote. Only researcher can see the result of this poll.]]></value>
 	</item>
 </lang>

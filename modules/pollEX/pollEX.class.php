@@ -1,40 +1,40 @@
 <?php
 /* Copyright (C) KnDol <http://www.kndol.net> */
 /**
- * @class  pollEX
+ * @class  pollex
  * @author KnDol (kndol@kndol.net)
- * @brief The parent class of the pollEX module
+ * @brief The parent class of the pollex module
  */
-class pollEX extends ModuleObject
+class pollex extends ModuleObject
 {
 	private $triggers = array(
 		array('name' =>'document.insertDocument',
-			'module'=>'pollEX',
+			'module'=>'pollex',
 			'type' => 'controller',
 			'func' => 'triggerInsertDocumentPoll',
 			'position'=>'after'),
 		array('name' =>'comment.insertComment',
-			'module'=>'pollEX',
+			'module'=>'pollex',
 			'type' => 'controller',
 			'func' => 'triggerInsertCommentPoll',
 			'position'=>'after'),
 		array('name' =>'document.updateDocument',
-			'module'=>'pollEX',
+			'module'=>'pollex',
 			'type' => 'controller',
 			'func' => 'triggerUpdateDocumentPoll',
 			'position'=>'after'),
 		array('name' =>'comment.updateComment',
-			'module'=>'pollEX',
+			'module'=>'pollex',
 			'type' => 'controller',
 			'func' => 'triggerUpdateCommentPoll',
 			'position'=>'after'),
 		array('name' =>'document.deleteDocument',
-			'module'=>'pollEX',
+			'module'=>'pollex',
 			'type' => 'controller',
 			'func' => 'triggerDeleteDocumentPoll',
 			'position'=>'after'),
 		array('name' =>'comment.deleteComment',
-			'module'=>'pollEX',
+			'module'=>'pollex',
 			'type' => 'controller',
 			'func' => 'triggerDeleteCommentPoll',
 			'position'=>'after')
@@ -53,8 +53,8 @@ class pollEX extends ModuleObject
 		$config = new stdClass;
 		$config->skin = 'default';
 		$config->colorset = 'normal';
-		$oModuleController->insertModuleConfig('pollEX', $config);
-		// A pollEX connection to add/update/delete posts/comments
+		$oModuleController->insertModuleConfig('pollex', $config);
+		// A pollex connection to add/update/delete posts/comments
         foreach($this->triggers as $trigger)
         {
             $oModuleController->insertTrigger(
@@ -75,7 +75,7 @@ class pollEX extends ModuleObject
 	function checkUpdate()
 	{
 		$oModuleModel = getModel('module');
-		// A pollEX connection to add/update/delete posts/comments
+		// A pollex connection to add/update/delete posts/comments
         foreach($this->triggers as $trigger)
         {
         	if (!$oModuleModel->getTrigger(
@@ -97,7 +97,7 @@ class pollEX extends ModuleObject
 	{
 		$oModuleModel = getModel('module');
 		$oModuleController = getController('module');
-		// A pollEX connection to add/update/delete posts/comments
+		// A pollex connection to add/update/delete posts/comments
         foreach($this->triggers as $trigger)
         {
         	if (!$oModuleModel->getTrigger(
@@ -122,7 +122,7 @@ class pollEX extends ModuleObject
 	}
 
 	/**
-	 * @brief Uninstall pollEX module
+	 * @brief Uninstall pollex module
 	 */
 	function moduleUninstall()
 	{
@@ -163,5 +163,5 @@ class pollEX extends ModuleObject
 	{
 	}
 }
-/* End of file pollEX.class.php */
-/* Location: ./modules/pollEX/pollEX.class.php */
+/* End of file pollex.class.php */
+/* Location: ./modules/pollex/pollex.class.php */

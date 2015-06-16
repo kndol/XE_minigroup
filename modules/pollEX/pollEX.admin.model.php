@@ -1,11 +1,11 @@
 <?php
 /* Copyright (C) KnDol <http://www.kndol.net> */
 /**
- * @class  pollEXAdminModel
+ * @class  pollexAdminModel
  * @author KnDol (kndol@kndol.net)
- * @brief The admin model class of the pollEX module
+ * @brief The admin model class of the pollex module
  */
-class pollEXAdminModel extends pollEX
+class pollexAdminModel extends pollex
 {
 	/**
 	 * @brief Initialization
@@ -15,11 +15,11 @@ class pollEXAdminModel extends pollEX
 	}
 
 	/**
-	 * @brief Get the list of pollEXs
+	 * @brief Get the list of polls
 	 */
-	function getPollList($args)
+	function getPollexList($args)
 	{
-		$output = executeQueryArray('pollEX.getPollList', $args);
+		$output = executeQueryArray('pollex.getPollexList', $args);
 		if(!$output->toBool()) return $output;
 
 		//if($output->data && !is_array($output->data)) $output->data = array($output->data);
@@ -27,22 +27,22 @@ class pollEXAdminModel extends pollEX
 	}
 
 	/**
-	 * @brief Get the list of pollEXs with member info
+	 * @brief Get the list of polls with member info
 	 */
-	function getPollListWithMember($args)
+	function getPollexListWithMember($args)
 	{
-		$output = executeQueryArray('pollEX.getPollListWithMember', $args);
+		$output = executeQueryArray('pollex.getPollexListWithMember', $args);
 		if(!$output->toBool()) return $output;
 
 		return $output;
 	}
 
 	/**
-	 * @brief Get the original pollEX
+	 * @brief Get the original pollex
 	 */
-	function getPollAdminTarget()
+	function getPollexAdminTarget()
 	{
-		$pollEX_srl = Context::get('pollEX_srl');
+		$poll_srl = Context::get('poll_srl');
 		$upload_target_srl = Context::get('upload_target_srl');
 
 		$oDocumentModel = getModel('document');
@@ -64,5 +64,5 @@ class pollEXAdminModel extends pollEX
 		else return new Object(-1, 'msg_not_founded');
 	}
 }
-/* End of file pollEX.admin.model.php */
-/* Location: ./modules/pollEX/pollEX.admin.model.php */
+/* End of file pollex.admin.model.php */
+/* Location: ./modules/pollex/pollex.admin.model.php */

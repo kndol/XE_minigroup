@@ -143,15 +143,17 @@ class minigroup extends ModuleObject
 	            );
 	        }
         }
-		if($oDB->isTableExists("minigroups"))
-		{
-			$oDB->DropTable("minigroups");
-		}
+		if($oDB->isTableExists("minigroups")) $oDB->DropTable("minigroups");
+		
+		executeQuery('minigroup.deleteMinigroupList');
+		executeQuery('minigroup.deleteMinigroupConfig');
+//		executeQuery('minigroup.deleteMinigroupSiteConfig');
+		
 		return new Object();
 	}
 
 	/**
-	 * @brief Re-generate the cache file
+	 * @brief 캐시 파일 재생성
 	 */
 	function recompileCache()
 	{

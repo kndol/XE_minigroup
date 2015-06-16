@@ -3,33 +3,33 @@
     <grants />
     <permissions />
     <actions>
-        <action name="dispPollAdminList" type="view" admin_index="true" menu_name="poll" menu_index="true" />
-        <action name="dispPollAdminResult" type="view" />
-        <action name="dispPollAdminConfig" type="view" />
-        <action name="getPollGetColorsetList" type="model" />
-        <action name="getPollAdminTarget" type="model" />
+        <action name="dispPollexAdminList" type="view" admin_index="true" menu_name="pollex" menu_index="true" />
+        <action name="dispPollexAdminResult" type="view" />
+        <action name="dispPollexAdminConfig" type="view" />
+        <action name="getPollexGetColorsetList" type="model" />
+        <action name="getPollexAdminTarget" type="model" />
 
-        <action name="procPollInsert" type="controller" />
-        <action name="procPoll" type="controller" ruleset="poll" />
-        <action name="procPollViewResult" type="controller" />
-        <action name="procPollGetList" type="controller" />
-        <action name="procPollAdminDeleteChecked" type="controller" ruleset="deleteChecked" />
-        <action name="procPollAdminInsertConfig" type="controller" ruleset="insertConfig" />
-        <action name="procPollAdminAddCart" type="controller" />
+        <action name="procPollexInsert" type="controller" />
+        <action name="procPollex" type="controller" ruleset="poll" />
+        <action name="procPollexViewResult" type="controller" />
+        <action name="procPollexGetList" type="controller" />
+        <action name="procPollexAdminDeleteChecked" type="controller" ruleset="deleteChecked" />
+        <action name="procPollexAdminInsertConfig" type="controller" ruleset="insertConfig" />
+        <action name="procPollexAdminAddCart" type="controller" />
     </actions>
 	<menus>
-		<menu name="poll">
-			<title xml:lang="en">Poll</title>
-			<title xml:lang="ko">설문</title>
-			<title xml:lang="zh-CN">Poll</title>
-			<title xml:lang="jp">アンケート</title>
-			<title xml:lang="es">Poll</title>
-			<title xml:lang="ru">Poll</title>
-			<title xml:lang="fr">Poll</title>
-			<title xml:lang="zh-TW">投票</title>
-			<title xml:lang="vi">Poll</title>
-			<title xml:lang="mn">Poll</title>
-			<title xml:lang="tr">Poll</title>
+		<menu name="pollex">
+			<title xml:lang="en">PollEX</title>
+			<title xml:lang="ko">설문EX</title>
+			<title xml:lang="zh-CN">PollEX</title>
+			<title xml:lang="jp">アンケートEX</title>
+			<title xml:lang="es">PollEX</title>
+			<title xml:lang="ru">PollEX</title>
+			<title xml:lang="fr">PollEX</title>
+			<title xml:lang="zh-TW">投票EX</title>
+			<title xml:lang="vi">PollEX</title>
+			<title xml:lang="mn">PollEX</title>
+			<title xml:lang="tr">PollEX</title>
 		</menu>
 	</menus>
 </module>
