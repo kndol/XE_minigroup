@@ -1,4 +1,6 @@
 <load target="css/poll.css" />
+<load target="css/contextMenu.min.css" />
+<load target="js/contextMenu.min.js" />
 <div class="poll_box">
 	<div cond="$XE_VALIDATOR_MESSAGE && $XE_VALIDATOR_ID == 'modules/pollex/skins/default/form/1'" class="message {$XE_VALIDATOR_MESSAGE_TYPE}">
 		<p>{$XE_VALIDATOR_MESSAGE}</p>
@@ -45,7 +47,16 @@
 			                <tr>
 			                    <td>&nbsp;</td>
 			                    <td class="bar"><!--@if($per)--><img src="./images/color_bar.png" style="width:{$per}%;height:6px;" alt="bar" /><!--@else--><img src="./images/blank.gif" width="1" height="1" alt="" /><!--@end--></td>
-			                    <td class="status"><strong>{$item->poll_count}</strong> ({$per}%)</td>
+			                    <td class="status"><strong><!--@if(isset($item->members))--><a href="#" class="voter_{$item->poll_item_srl}" onclick="return false"><!--@end-->{$item->poll_count}<!--@if(isset($item->members))--></a><!--@end--></strong> ({$per}%)
+			                    	<ul id="voters_{$item->poll_item_srl}" style="display:none" cond="isset($item->members)">
+			                    		<!--@foreach($item->members as $member_srl => $member)-->
+			                    		<li><a href="#popup_menu_area" class="member_{$member_srl}" onclick="return false">{$member->user_name}</a></li>
+			                    		<!--@end-->
+			                    	</ul>
+			                    </td>
+<script>
+jQuery(function($){$('.voter_{$item->poll_item_srl}').contextMenu('#voters_{$item->poll_item_srl}', {verAdjust:10,closeOnClick:false});});
+</script>
 			                </tr>
 			                </table>
 						<!--@end-->
@@ -66,3 +77,4 @@
     </tr>
     </table>
 </div>
+

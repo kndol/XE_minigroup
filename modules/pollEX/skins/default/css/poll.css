@@ -23,6 +23,7 @@
 .poll_table td.poll_content table.item_bar_table td.bar img{width:100%;height:6px}
 .poll_table td.poll_content table.item_bar_table td.status{font-size:.9em;padding-bottom:5px;color:#636363;padding-left:15px}
 .poll_table td.poll_content table.item_bar_table td.status strong{font-weight:bold;color:#58C011}
+.poll_table td.poll_content table.item_bar_table td.status strong a{color:#58C011}
 .poll_table td.poll_content div.item{color:#636363;border-bottom:1px solid #EDEDED;padding:5px 0 8px 10px;margin-bottom:3px}
 .poll_table td.poll_content div.noborder{border-bottom:none;margin-bottom:10px}
 .poll_table td.poll_content div.checkcount{border-bottom:1px dashed #EDEDED;padding:0 0 8px 10px;margin-bottom:3px;text-align:right;color:#636363}

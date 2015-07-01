@@ -57,6 +57,8 @@ class pollexModel extends pollex
 		$pollex->stop_date = $output->data->stop_date;
 		$pollex->option = unserialize($output->data->option);
 
+		$show_voters = $logged_info->is_admin=='Y' || $pollex->option->show_voters=='Y';
+		
 		$columnList = array('poll_index_srl', 'title', 'checkcount', 'poll_count');
 		$output = executeQuery('pollex.getPollexTitle', $args, $columnList);
 		if(!$output->data) return;
@@ -72,7 +74,6 @@ class pollexModel extends pollex
 		}
 
 		$output = executeQuery('pollex.getPollexItemWithMember', $args);
-debugPrint($output);
 		$i = -1;
 		foreach($output->data as $key => $val)
 		{
@@ -86,9 +87,9 @@ debugPrint($output);
 				$pollex->poll[$val->poll_index_srl]->item[$i]->upload_target_srl = $val->upload_target_srl;
 				$pollex->poll[$val->poll_index_srl]->item[$i]->title = $val->title;
 				$pollex->poll[$val->poll_index_srl]->item[$i]->poll_count = $val->poll_count;
-				$pollex->poll[$val->poll_index_srl]->item[$i]->members = array();
+				if ($show_voters && $val->member_srl != '') $pollex->poll[$val->poll_index_srl]->item[$i]->members = array();
 			}
-			if ($val->member_srl != '')
+			if ($show_voters && $val->member_srl != '')
 			{
 				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl] = new stdClass;
 				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl]->member_srl = $val->member_srl;
@@ -96,7 +97,6 @@ debugPrint($output);
 				$pollex->poll[$val->poll_index_srl]->item[$i]->members[$val->member_srl]->regdate = $val->regdate;
 			}
 		}
-debugPrint($pollex);
 
 		$pollex->poll_srl = $poll_srl;
 		// Only ongoing pollex results

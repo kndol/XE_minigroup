@@ -14,6 +14,8 @@ function completeInsertPoll(ret_obj) {
 
     var poll_srl = ret_obj["poll_srl"];
     if(!poll_srl) return null;
+    var poll_title = fo_obj.title_1.value;
+    var stop_date = fo_obj.inputDate.value;
 
     var text = "<img src=\"../../../../common/img/blank.gif\" poll_srl=\""+poll_srl+"\" editor_component=\"poll_maker_ex\" skin=\""+skin+"\" style=\"display:block;width:400px;height:300px;border:2px dotted #4371B9;background:url(./modules/editor/components/poll_maker_ex/tpl/poll_maker_ex_component.gif) no-repeat center;\"  />";
 
@@ -25,6 +27,13 @@ function completeInsertPoll(ret_obj) {
 
 	opener.editorReplaceHTML(iframe_obj, text);
 	opener.editorFocus(opener.editorPrevSrl);
+	
+	// 부모 창의 글 제목에 설문 종료 날짜 추가
+	// 사용자가 제목을 아직 안 적었으면 설문 첫번째 조항의 제목으로 글 제목 자동 추가
+	var titleBox = opener.document.getElementById('postTitle');
+	if (titleBox.value.trim()) titleBox.value = titleBox.value + " (" + stop_date + ")";
+	else titleBox.value = poll_title + " (" + stop_date + ")";
+	
     window.close();
 
     return null;
