@@ -1,10 +1,10 @@
 /**
  * @file   modules/pollex/js/poll_admin.js
  * @author KnDol (kndol@kndol.net)
- * @brief  pollex ¸ðµâÀÇ °ü¸®ÀÚ¿ë javascript
+ * @brief  pollex ëª¨ë“ˆì˜ ê´€ë¦¬ìžìš© javascript
  **/
 
-/* À§Á¬ ÄÚµå »ý¼º½Ã ½ºÅ²À» °í¸£¸é ÄÃ·¯¼ÂÀÇ Á¤º¸¸¦ Ç¥½Ã */
+/* ìœ„ì ¯ ì½”ë“œ ìƒì„±ì‹œ ìŠ¤í‚¨ì„ ê³ ë¥´ë©´ ì»¬ëŸ¬ì…‹ì˜ ì •ë³´ë¥¼ í‘œì‹œ */
 function doDisplaySkinColorset(a, b) {
     var c = a.options[a.selectedIndex].value,
         d = new Array;
@@ -13,7 +13,7 @@ function doDisplaySkinColorset(a, b) {
     exec_xml("pollex", "getPollGetColorsetList", d, completeGetSkinColorset, e, d)
 }
 
-/* ¼­¹ö¿¡¼­ ¹Þ¾Æ¿Â ÄÃ·¯¼ÂÀ» Ç¥½Ã */
+/* ì„œë²„ì—ì„œ ë°›ì•„ì˜¨ ì»¬ëŸ¬ì…‹ì„ í‘œì‹œ */
 function completeGetSkinColorset(a, b, c, d) {
     for (var e = get_by_id("fo_poll").poll_colorset, f = e.options.length, g = c.colorset, h = 0; f > h; h++) e.remove(0);
     for (var i = a.colorset_list.split("\n"), j = 0, h = 0; h < i.length; h++) {
@@ -25,7 +25,7 @@ function completeGetSkinColorset(a, b, c, d) {
     e.selectedIndex = j
 }
 
-/* °ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ ¼±ÅÃµÈ ¼³¹®Á¶»ç ¿øº»±Û·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö */
+/* ê´€ë¦¬ìž íŽ˜ì´ì§€ì—ì„œ ì„ íƒëœ ì„¤ë¬¸ì¡°ì‚¬ ì›ë³¸ê¸€ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ */
 function doMovePoll(a, b) {
     var c = new Array;
     c.poll_srl = a, c.upload_target_srl = b;
