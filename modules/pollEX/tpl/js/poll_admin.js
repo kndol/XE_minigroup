@@ -1,91 +1,53 @@
 /**
  * @file   modules/pollex/js/poll_admin.js
- * @author NAVER (developers@xpressengine.com)
- * @brief  poll ëª¨ë“ˆì˜ ê´€ë¦¬ììš© javascript
+ * @author KnDol (kndol@kndol.net)
+ * @brief  pollex ¸ğµâÀÇ °ü¸®ÀÚ¿ë javascript
  **/
 
-/* ìœ„ì ¯ ì½”ë“œ ìƒì„±ì‹œ ìŠ¤í‚¨ì„ ê³ ë¥´ë©´ ì»¬ëŸ¬ì…‹ì˜ ì •ë³´ë¥¼ í‘œì‹œ */
-function doDisplaySkinColorset(sel, colorset) {
-    var skin = sel.options[sel.selectedIndex].value;
-
-    var params = new Array();
-    params["skin"] = skin;
-    params["colorset"] = colorset;
-
-    var response_tags = new Array("error","message","colorset_list");
-
-    exec_xml("pollex", "getPollexGetColorsetList", params, completeGetSkinColorset, response_tags, params);
+/* À§Á¬ ÄÚµå »ı¼º½Ã ½ºÅ²À» °í¸£¸é ÄÃ·¯¼ÂÀÇ Á¤º¸¸¦ Ç¥½Ã */
+function doDisplaySkinColorset(a, b) {
+    var c = a.options[a.selectedIndex].value,
+        d = new Array;
+    d.skin = c, d.colorset = b;
+    var e = new Array("error", "message", "colorset_list");
+    exec_xml("pollex", "getPollGetColorsetList", d, completeGetSkinColorset, e, d)
 }
 
-/* ì„œë²„ì—ì„œ ë°›ì•„ì˜¨ ì»¬ëŸ¬ì…‹ì„ í‘œì‹œ */
-function completeGetSkinColorset(ret_obj, response_tags, params, fo_obj) {
-    var sel = get_by_id("fo_poll").poll_colorset;
-    var length = sel.options.length;
-    var selected_colorset = params["colorset"];
-    for(var i=0;i<length;i++) sel.remove(0);
-
-    var colorset_list = ret_obj["colorset_list"].split("\n");
-    var selected_index = 0;
-    for(var i=0;i<colorset_list.length;i++) {
-        var tmp = colorset_list[i].split("|@|");
-        if(selected_colorset && selected_colorset==tmp[0]) selected_index = i;
-        var opt = new Option(tmp[1], tmp[0], false, false);
-        sel.options.add(opt);
+/* ¼­¹ö¿¡¼­ ¹Ş¾Æ¿Â ÄÃ·¯¼ÂÀ» Ç¥½Ã */
+function completeGetSkinColorset(a, b, c, d) {
+    for (var e = get_by_id("fo_poll").poll_colorset, f = e.options.length, g = c.colorset, h = 0; f > h; h++) e.remove(0);
+    for (var i = a.colorset_list.split("\n"), j = 0, h = 0; h < i.length; h++) {
+        var k = i[h].split("|@|");
+        g && g == k[0] && (j = h);
+        var l = new Option(k[1], k[0], !1, !1);
+        e.options.add(l)
     }
-
-    sel.selectedIndex = selected_index;
+    e.selectedIndex = j
 }
 
-/* ê´€ë¦¬ì í˜ì´ì§€ì—ì„œ ì„ íƒëœ ì„¤ë¬¸ì¡°ì‚¬ ì›ë³¸ê¸€ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ */
-function doMovePoll(poll_srl, upload_target_srl) {
-
-    var params = new Array();
-    params['poll_srl'] = poll_srl;
-    params['upload_target_srl'] = upload_target_srl;
-
-    var response_tags = new Array('error','message','document_srl','comment_srl');
-    exec_xml('pollex','getPollexAdminTarget', params, completeMovePoll, response_tags);
+/* °ü¸®ÀÚ ÆäÀÌÁö¿¡¼­ ¼±ÅÃµÈ ¼³¹®Á¶»ç ¿øº»±Û·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö */
+function doMovePoll(a, b) {
+    var c = new Array;
+    c.poll_srl = a, c.upload_target_srl = b;
+    var d = new Array("error", "message", "document_srl", "comment_srl");
+    exec_xml("pollex", "getPollAdminTarget", c, completeMovePoll, d)
 }
 
-function completeMovePoll(ret_obj, response_tags) {
-    var document_srl = ret_obj['document_srl'];
-    var comment_srl = ret_obj['comment_srl'];
-    var url = request_uri.setQuery('document_srl', document_srl);
-    if(comment_srl) url = url+'#comment_'+comment_srl;
-    winopen(url, 'pollTarget');
+function completeMovePoll(a, b) {
+    var c = a.document_srl,
+        d = a.comment_srl,
+        e = request_uri.setQuery("document_srl", c);
+    d && (e = e + "#comment_" + d), winopen(e, "pollTarget")
 }
 
-function checkSearch(form)
-{
-	if(form.search_target.value == '')
-	{
-		alert(xe.lang.msg_empty_search_target);
-		return false;
-	}
-	if(form.search_keyword.value == '')
-	{
-		alert(xe.lang.msg_empty_search_keyword);
-		return false;
-	}
+function checkSearch(a) {
+    return "" == a.search_target.value ? (alert(xe.lang.msg_empty_search_target), !1) : "" == a.search_keyword.value ? (alert(xe.lang.msg_empty_search_keyword), !1) : void 0
 }
-
-jQuery(function ($){
-	$('#pollList').submit(function(e){
-		var cnt = $('#pollList tbody :checked').length;
-		if(cnt == 0)
-		{
-			e.stopPropagation();
-			alert(xe.lang.msg_select_poll);
-			return false;
-		}
-
-		var msg = xe.lang.confirm_poll_delete.replace("%s", cnt);
-		if(!confirm(msg))
-		{
-			e.stopPropagation();
-			return false;
-			
-		}
-	});
-	
+jQuery(function(a) {
+    a("#pollList").submit(function(b) {
+        var c = a("#pollList tbody :checked").length;
+        if (0 == c) return b.stopPropagation(), alert(xe.lang.msg_select_poll), !1;
+        var d = xe.lang.confirm_poll_delete.replace("%s", c);
+        return confirm(d) ? void 0 : (b.stopPropagation(), !1)
+    })
 });

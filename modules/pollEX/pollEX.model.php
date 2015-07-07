@@ -100,7 +100,7 @@ class pollexModel extends pollex
 
 		$pollex->poll_srl = $poll_srl;
 		// Only ongoing pollex results
-		if(!$show_retult && $pollex->stop_date > date("Ymd"))
+		if(!$show_retult && $pollex->stop_date >= date("Ymd"))
 		{
 			if($this->isPolled($poll_srl)) $tpl_file = "result";
 			else $tpl_file = "form";

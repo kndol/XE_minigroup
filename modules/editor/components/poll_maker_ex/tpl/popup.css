@@ -3,7 +3,7 @@
 @import url(../../../../../modules/admin/tpl/css/admin.bootstrap.min.css);
 @import url(../../../../../common/css/bootstrap.min.css);
 
-.popup {width:98% !important}
+.popup {margin: 0 auto !important;width:98% !important}
 
 .display_date { cursor:pointer; width:80px; float:left; border:1px solid; border-color:#a6a6a6 #d8d8d8 #d8d8d8 #a6a6a6; height:1em; padding:3px; font-family:tahoma; }
 
@@ -24,6 +24,10 @@ li a { text-decoration:none; color:#666666;}
 .poll_box { margin-bottom:15px; }
 
 .item_title {width:100px}
+
+@media all and (max-width: 980px) {
+.sub_controls {margin-left:15px !important;}
+}
 
 @media screen and (max-width:740px){
 .item_title {width:70px !important}

@@ -1,4 +1,5 @@
 <!--%import("popup.js")-->
+<!--%import("../../../../../modules/admin/tpl/js/admin.min.js")-->
 <!--%import("popup.css")-->
 <!--%import("filter/insert_pollex.xml")-->
 <!--%import("../lang")-->
@@ -56,8 +57,11 @@ $(function(){
 			</div>
 		</div>
 		<div id="poll_option" class="x_control-group">
-			<label class="x_control-label"><input type="checkbox" id="opt_show_result" name="opt_show_result" value="Y" checked /> {$lang->opt_show_result}</label>
-			<div class="x_controls" style="margin-left:15px">
+			<label class="x_control-label"><input type="checkbox" id="opt_show_result" name="opt_show_result" value="Y" checked /> {$lang->opt_show_result}
+				<a href="#opt_help" class="x_icon-question-sign" data-toggle>{$lang->help}</a>
+				<p id="opt_help" class="x_help-block" hidden>{$lang->about_opt_show_result}</p>
+			</label>
+			<div class="x_controls sub_controls">
 				<label for="opt_voter_result" class="x_inline"><input type="checkbox" id="opt_voter_result" name="opt_voter_result" value="Y" /> {$lang->opt_voter_result}</label>
 				<label for="opt_expire_result" class="x_inline"><input type="checkbox" id="opt_expire_result" name="opt_expire_result" value="Y" /> {$lang->opt_expire_result}</label>
 				<label for="opt_show_voters" class="x_inline"><input type="checkbox" id="opt_show_voters" name="opt_show_voters" value="Y" checked /> {$lang->opt_show_voters}</label>
