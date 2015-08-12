@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <module>
+     <grants />
+     <permissions />
+     <actions>
+		<action name="getJsonCheckIdentifier" type="model" />
+		<action name="dispJsonCheckModule" type="view" />
+		<action name="dispJsonAdminSetup" type="view" standalone="true" admin_index="true"/>
+		<action name="dispJsonLogin" type="view" />
+		<action name="dispJsonConnectSns" type="view" />
+		<action name="dispJsonLoginResult" type="view" />
+		<action name="dispJsonSignupFormList" type="view" />
+		<action name="dispJsonMenuList" type="view" />
+		<action name="dispJsonDocumentList" type="view" />
+		<action name="dispJsonDocument" type="view" />
+		<action name="dispJsonCommentList" type="view" />
+		<action name="dispJsonMessageList" type="view" />
+		<action name="dispJsonMessage" type="view" />
+		<action name="procJsonAdminSaveConfig" type="controller" />
+		<action name="procJsonMemberLogin" type="controller" />
+		<action name="procJsonMemberLogout" type="controller" />
+		<action name="procJsonMemberJoin" type="controller" />
+		<action name="procJsonUpdateReadedCount" type="controller" />
+		<action name="procJsonWriteDocument" type="controller" />
+		<action name="procJsonWriteComment" type="controller" />
+		<action name="procJsonUpdateDocument" type="controller" />
+		<action name="procJsonUpdateComment" type="controller" />
+		<action name="procJsonDeleteDocument" type="controller" />
+		<action name="procJsonDeleteComment" type="controller" />
+		
+		<action name="getAdminMenuItems" type="model" standalone="true" />
+     </actions>
+ </module>

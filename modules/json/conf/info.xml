@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">JSON</title>
+    <title xml:lang="en">JSON</title>
+    <description xml:lang="ko">하이브리드 앱을 위한 JSON 출력 모듈</description>
+    <description xml:lang="en">JSON Generator Module for the hybrid app.</description>
+    <version>0.1</version>
+    <date>2015-03-02</date>
+    <category>utility</category>
+
+    <author email_address="kndol@kndol.net" link="http://www.kndol.net">
+        <name xml:lang="ko">큰돌</name>
+        <name xml:lang="en">KnDol</name>
+    </author>
+</module>

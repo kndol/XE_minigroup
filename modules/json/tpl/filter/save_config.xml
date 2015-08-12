@@ -1,0 +1,5 @@
+<filter name="save_config" module="json" act="procJsonAdminSaveConfig" confirm_msg_code="confirm_submit">
+    <form>
+		<node target="show_menu_srls[]" required="false" />
+	</form>
+</filter>

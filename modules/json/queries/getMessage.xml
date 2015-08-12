@@ -1,0 +1,26 @@
+<query id="getMessage" action="select">
+    <tables>
+        <table name="member_message" alias="message" />
+    </tables>
+    <columns>
+        <column name="message.*" />
+    </columns>
+    <conditions>
+		<group pipe="or">
+			<condition operation="equal" column="message.message_type" default="S" />
+			<condition operation="equal" column="message.receiver_srl" var="member_srl" notnull="notnull" pipe="and" />
+			<condition operation="equal" column="message.sender_srl" var="opposite_member_srl" pipe="and" />
+		</group>
+		<group pipe="or">
+			<condition operation="equal" column="message.message_type" default="R" />
+			<condition operation="equal" column="message.receiver_srl" var="opposite_member_srl" notnull="notnull" pipe="and" />
+			<condition operation="equal" column="message.sender_srl" var="member_srl" pipe="and" />
+		</group>
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="message.regdate" order="asc" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>

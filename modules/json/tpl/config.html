@@ -1,0 +1,49 @@
+<load target="js/config.js" />
+<!--%import("filter/save_config.xml")-->
+				
+<h4 class="xeAdmin">{$lang->basic_config}</h4>
+<p class="summary">{$lang->basic_config_help}</p>
+ <div class="x_page-header">
+	<h1>{$module_info->description} v{$module_info->version}</h1>
+</div>
+<form action="./" method="post" onsubmit="return procFilter(this, save_config)" class="x_form-horizontal" id="json_setup">
+	<section class="section">
+		<h1>메뉴 노출 설정</h1>
+		<div class="x_control-group">
+			<label class="x_control-label">사이트맵 선택</label>
+				<div id="menu_list" class="x_controls">
+					<select id="menu_srl" name="menu_srl" onchange="doDisplayMenuItems(this)">
+						<!--@foreach($menu_list as $val)-->
+							<!--@if($val->items_count>0 && $val->title!="__ADMINMENU_V17__")-->
+								<option value="{$val->menu_srl}" <!--@if($config->menu_srl==$val->menu_srl)-->selected<!--@end-->>{$val->title} ({$val->menu_srl})</option>
+							<!--@end-->
+						<!--@end-->
+					</select>
+			<br><p class="x_help-inline">앱에서 출력할 사이트맵을 선택하세요.</p>
+				</div>
+					
+		</div>
+		
+		<div class="x_control-group">
+			<label class="x_control-label">메뉴 선택</label>
+			<div class="x_controls">
+				<p class="x_help-block">앱에서 출력할 메뉴를 선택하세요.</p>
+				<p class="x_help-block">항목을 모두 선택하지 않으면 사이트맵 내의 모든 메뉴를 출력합니다.</p>
+				<div id="menu_item">
+					<!--@foreach($menu_items as $val)-->
+						<div>
+							<label>
+								<input type="checkbox" value="{$val->menu_item_srl}" name="show_menu_srls[]" checked="checked"|cond="in_array($val->menu_item_srl, $config->show_menu_srls)" />
+								<strong>{$val->name}</strong> ({$val->menu_item_srl})
+							</label>
+						</div>
+					<!--@end-->
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="btnArea x_clearfix">
+		<a href="{getUrl('act', 'dispModuleAdminContent')}" class="x_pull-left x_btn">{$lang->cmd_back}</a>
+		<button class="x_btn x_btn-primary" type="submit"  accesskey="s" >{$lang->cmd_registration}</button>
+	</div>
+</form>

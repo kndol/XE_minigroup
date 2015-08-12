@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="json">
+		<value xml:lang="ko"><![CDATA[JSON 데이터]]></value>
+		<value xml:lang="en"><![CDATA[JSON data]]></value>
+	</item>
+</lang>

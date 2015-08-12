@@ -1,0 +1,38 @@
+<query id="getMessageList" action="select">
+    <tables>
+        <table name="member_message" alias="message" />
+    </tables>
+    <columns>
+        <column name="message.*" />
+    </columns>
+    <conditions>
+		<query operation="in" column="message.message_srl" notnull="notnull" alias="documentMaxRegdate">
+			<tables>
+				<table name="member_message" />
+			</tables>
+			<columns>
+				<column name="max(message_srl)" alias="maxmessagesrl" />
+			</columns> 
+			<conditions>
+				<group>
+					<condition operation="equal" column="sender_srl" var="member_srl" />
+					<condition operation="equal" column="message_type" default="R" pipe="and" />
+				</group>
+				<group pipe="or">
+					<condition operation="equal" column="receiver_srl" var="member_srl" />
+					<condition operation="equal" column="message_type" default="S"  pipe="and" />
+				</group>
+			</conditions>
+			<groups>
+				<group column="least(sender_srl, receiver_srl)" />
+				<group column="greatest(sender_srl, receiver_srl)" />
+			</groups>
+		</query>
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="message.regdate" order="desc" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>
+</query>
