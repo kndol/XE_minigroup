@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">소셜XE</title>
+    <description xml:lang="ko">SNS 로그인과 연동을 지원해주는 모듈입니다.</description>
+    <version>0.1.4</version>
+    <date>2015-03-08</date>
+    <category>service</category>
+	
+    <author email_address="webmaster@conory.com" link="http://www.conory.com">
+        <name xml:lang="ko">CONORY</name>
+    </author>
+</module>

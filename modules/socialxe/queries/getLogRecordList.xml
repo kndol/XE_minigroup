@@ -1,0 +1,20 @@
+<query id="getLogRecordList" action="select">
+    <tables>
+        <table name="socialxe_log" />
+    </tables>
+    <columns>
+        <column name="*" />
+    </columns>
+    <conditions>
+	    <condition operation="equal" column="member_srl" var="member_srl" />		
+	    <condition operation="equal" column="category" var="category" pipe="and"/>			
+	    <condition operation="like" column="content" var="content" pipe="and"/>	
+        <condition operation="equal" column="ipaddress" var="ipaddress" pipe="and"/>		
+    </conditions>
+    <navigation>
+        <index var="sort_index" default="micro_time" order="desc" />
+        <list_count var="list_count" default="20" />
+        <page_count var="page_count" default="10" />
+        <page var="page" default="1" />
+    </navigation>		
+</query>
