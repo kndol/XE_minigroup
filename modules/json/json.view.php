@@ -15,10 +15,23 @@
 			Context::setResponseMethod('JSON');
         }
 		
+		function dispJsonGetKey() {
+			$args = array();
+//			$args['key'] = sprintf("%08x%08x%08x%08x", mt_rand(0, 0xffffffff), mt_rand(0, 0xffffffff), mt_rand(0, 0xffffffff), mt_rand(0, 0xffffffff));
+			$args['key'] = sprintf("%08x", mt_rand(0, 0xffffffff));
+			$_SESSION['SECURITY_KEY'] = $args['key'];
+			$this->setMessage('OK', 'info');
+			$this->add('data', $args);
+		}
+
 		function dispJsonLogin() {
 			global $lang;
 			$loginForm = array();
-			if(!Context::get('is_logged')) {
+			$oMemberModel = &getModel('member');
+			if($oMemberModel->isLogged()) {
+				$this->setMessage('already_logged', 'info');
+			}
+			else {
 				$oSocialxeClass = &getClass('socialxe');
 				$config = $oSocialxeClass->getConfig();
 
@@ -43,21 +56,22 @@
 				else {
 					// 기본 로그인
 					$oModuleModel = &getModel('module');
-					$config = $oModuleModel->getModuleConfig('member');
 					$args = new stdClass;
-					$args->id = ($config->identifier == 'user_id') ? $lang->user_id : $lang->email_address;
+					$args->user_id = $lang->user_id;
+					$args->email_address = $lang->email_address;
 					$args->password = $lang->password;
 					$args->keep_signed = $lang->keep_signed;
-					$args->about_keep_warning = $lang->about_keep_warning;
-					$args->login_btn = $lang->cmd_login;
-					$args->find_account = $lang->cmd_find_member_account;
-					$args->signup = $lang->cmd_signup;
+					$args->about_keep_warning = $lang->about_keep_app_warning;
+					$args->cmd_login = $lang->cmd_login;
+					$args->sns_login = $lang->sns_login;
+					$args->cmd_find_member_account = $lang->cmd_find_member_account;
+					$args->cmd_signup = $lang->cmd_signup;
 					$loginForm['lang'] = $args;
+					$args = new stdClass;
+					$args->identifier = $oMemberModel->getMemberConfig()->identifier;
+					$loginForm['config'] = $args;
 					$this->setMessage('default_login', 'ui');
 				}
-			}
-			else {
-				$this->setMessage('already_logged', 'info');
 			}
 			$this->add('data', $loginForm);
 		}
@@ -65,9 +79,9 @@
 		function dispJsonConnectSns() {
 			Context::setRequestMethod('HTML');
 			Context::setResponseMethod('HTML');
-			$_SESSION["call_from"] = "json";
+			$_SESSION["called_from"] = "json";
 
-			$oSocialxeClass = getClass("socialxe");
+			$oSocialxeClass = &getClass("socialxe");
 			$config = $oSocialxeClass->config;
 
 			if(isCrawler()) return new Object(-1, "msg_invalid_request");
@@ -105,7 +119,7 @@
 
 			unset($_SESSION['socialxe_input_add_info_data']);
 
-			$oSocialxeModel = getModel('socialxe');
+			$oSocialxeModel = &getModel('socialxe');
 
 			//로그기록
 			$info = new stdClass;
@@ -117,21 +131,29 @@
 			$this->setRedirectUrl($redirect_url);
 		}
 
-		function dispJsonLoginResult() {
-			$XE_VALIDATOR_MESSAGE = Context::get('XE_VALIDATOR_MESSAGE');
-			$XE_VALIDATOR_ERROR = Context::get('XE_VALIDATOR_ERROR');
+		function dispJsonLogged() {
+			$this->setMessage('OK', 'info');
+		}
+
+		function dispJsonLoggedInfo() {
 			$oMemberModel = &getModel('member');
 			$is_logged = $oMemberModel->isLogged();
 
-			Context::get('is_logged');
-			if($XE_VALIDATOR_ERROR < 0) {
-				$this->setMessage($XE_VALIDATOR_MESSAGE, 'info');
-			}
-			else if (!$is_logged) {
-				$this->setMessage('msg_not_logged', 'info');
+			if (!$is_logged) {
+				$error_msg = $_SESSION["error_msg"];
+				if($error_msg) {
+					$this->setMessage($error_msg, 'error');
+					unset($_SESSION["error_msg"]);
+				}
+				else {
+					$this->setMessage('msg_not_logged', 'error');
+				}
 			}
 			else {
 				$logged_info = $oMemberModel->getLoggedInfo();
+				$args = new stdClass;
+				$args->identifier = $oMemberModel->getMemberConfig()->identifier;
+				$logged_info->config = $args;
 				$this->setMessage('msg_logged', 'info');
 				$this->add('data', $logged_info);
 			}

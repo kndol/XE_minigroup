@@ -2,7 +2,7 @@
 <module version="0.2">
     <title xml:lang="ko">소셜XE</title>
     <description xml:lang="ko">SNS 로그인과 연동을 지원해주는 모듈입니다.</description>
-    <version>0.1.4</version>
+    <version>2.1.4</version>
     <date>2015-03-08</date>
     <category>service</category>
 	

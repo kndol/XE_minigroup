@@ -1,51 +1,51 @@
 @charset "utf-8";
 
-.sns_icon{padding:0 0 3px 28px;}
-.sns_icon.twitter{background:url(../img/twitter.png) no-repeat;}
-.sns_icon.facebook{background:url(../img/facebook.png) no-repeat;}
-.sns_icon.google{background:url(../img/google.png) no-repeat;}
-.sns_icon.naver{background:url(../img/naver.png) no-repeat;}
-.sns_icon.kakao{background:url(../img/kakao.png) no-repeat;}
+.sns_icon{padding:0 0 3px 28px;background:url(../img/sns_icon.png) no-repeat;height:19px}
+.sns_icon.facebook{background-position:0 0px}
+.sns_icon.google{background-position:0 -22px}
+.sns_icon.kakao{background-position:0 -44px}
+.sns_icon.naver{background-position:0 -66px}
+.sns_icon.twitter{background-position:0 -88px}
 
 .sns_login{padding:0;margin:0;list-style:none; overflow:hidden;}
 .sns_login li{display:block;padding:0; margin-bottom:10px; text-align:center;}
 
 .login-footer{color:#777 !important}
 
-#sns_twitter .loginBtn {display:inline-block;background: #2596E9;color: white; width: 175px;border-radius:5px;text-align:left;}
-#sns_twitter a.loginBtn {text-decoration:none;}
-#sns_twitter .loginBtn:hover {background: #55ACEE;cursor:hand;}
-#sns_twitter span.label {font-weight:bold;}
-#sns_twitter span.icon {background: url('../img/btn_twitter.png') transparent 10px 50% no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
-#sns_twitter span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
-
 #sns_facebook .loginBtn {display:inline-block;background: #3B5998;color: white; width: 175px;border-radius:5px;text-align:left;}
 #sns_facebook a.loginBtn {text-decoration:none;}
 #sns_facebook .loginBtn:hover {background: #5577BD;cursor:hand;}
 #sns_facebook span.label {font-weight:bold;}
-#sns_facebook span.icon {background: url('../img/btn_facebook.png') transparent 10px 50% no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
+#sns_facebook span.icon {background: url('../img/sns_btn.png') 0px 0px no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
 #sns_facebook span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
 
 #sns_google .loginBtn {display:inline-block;background: #cc3732;color: white; width: 175px;border-radius:5px;text-align:left;}
 #sns_google a.loginBtn {text-decoration:none;}
 #sns_google .loginBtn:hover {background: #e74b37;cursor:hand;}
 #sns_google span.label {font-weight:bold;}
-#sns_google span.icon {background: url('../img/btn_google.png') transparent 10px 50% no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
+#sns_google span.icon {background: url('../img/sns_btn.png') 0px -40px no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
 #sns_google span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
-
-#sns_naver .loginBtn {display:inline-block;background: #1ec800;color: white; width: 175px;border-radius:5px;text-align:left;}
-#sns_naver a.loginBtn {text-decoration:none;}
-#sns_naver .loginBtn:hover {background: #25d805;cursor:hand;}
-#sns_naver span.label {font-weight:bold;}
-#sns_naver span.icon {background: url('../img/btn_naver.png') transparent 10px 50% no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
-#sns_naver span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
 
 #sns_kakao .loginBtn {display:inline-block;background: #ffeb00;color:#3c1e1e; width: 175px;border-radius:5px;text-align:left;}
 #sns_kakao a.loginBtn {text-decoration:none;}
 #sns_kakao .loginBtn:hover {background: #FFDE00;cursor:hand;}
 #sns_kakao span.label {font-weight:bold;}
-#sns_kakao span.icon {background: url('../img/btn_kakao.png') transparent 10px 50% no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
+#sns_kakao span.icon {background: url('../img/sns_btn.png') 0px -80px no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
 #sns_kakao span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
+
+#sns_naver .loginBtn {display:inline-block;background: #1ec800;color: white; width: 175px;border-radius:5px;text-align:left;}
+#sns_naver a.loginBtn {text-decoration:none;}
+#sns_naver .loginBtn:hover {background: #25d805;cursor:hand;}
+#sns_naver span.label {font-weight:bold;}
+#sns_naver span.icon {background: url('../img/sns_btn.png') 0px -120px no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
+#sns_naver span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
+
+#sns_twitter .loginBtn {display:inline-block;background: #2596E9;color: white; width: 175px;border-radius:5px;text-align:left;}
+#sns_twitter a.loginBtn {text-decoration:none;}
+#sns_twitter .loginBtn:hover {background: #55ACEE;cursor:hand;}
+#sns_twitter span.label {font-weight:bold;}
+#sns_twitter span.icon {background: url('../img/sns_btn.png') 0px -160px no-repeat;display: inline-block;vertical-align: middle;width: 40px;height:40px;}
+#sns_twitter span.buttonText {display:inline-block;vertical-align:middle;padding-left:10px;}
 
 .btn-primary{color:#ffffff;text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);background-color:#006dcc;*background-color:#0044cc;background-image:-moz-linear-gradient(top, #0088cc, #0044cc);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));background-image:-webkit-linear-gradient(top, #0088cc, #0044cc);background-image:-o-linear-gradient(top, #0088cc, #0044cc);background-image:linear-gradient(to bottom, #0088cc, #0044cc);background-repeat:repeat-x;border-color:#0044cc #0044cc #002a80;border-color:rgba(0, 68, 204, 0.1) rgba(0, 68, 204, 0.1) rgba(0, 42, 128, 0.25);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);filter:progid:DXImageTransform.Microsoft.gradient(enabled=false)}
 .btn-primary:hover{color:#ffffff;background-color:#0044cc !important;*background-color:#003bb3;background-image:-moz-linear-gradient(top, #0044cc, #003399);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#0044cc), to(#003399));background-image:-webkit-linear-gradient(top, #0044cc, #003399);background-image:-o-linear-gradient(top, #0044cc, #003399);background-image:linear-gradient(to bottom, #0044cc, #003399);background-repeat:repeat-x}

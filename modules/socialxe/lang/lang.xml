@@ -89,6 +89,7 @@
 	</item>
 	<item name="sns_login">
 		<value xml:lang="ko"><![CDATA[SNS 로그인]]></value>
+		<value xml:lang="en"><![CDATA[Socaial Sign In]]></value>
 	</item>
 	<item name="about_sns_login">
 		<value xml:lang="ko"><![CDATA[SNS 로그인으로 전환합니다.]]></value>
@@ -101,6 +102,7 @@
 	</item>
 	<item name="sns_default_login">
 		<value xml:lang="ko"><![CDATA[일반 로그인]]></value>
+		<value xml:lang="en"><![CDATA[Default Sign In]]></value>
 	</item>
 	<item name="about_sns_default_login">
 		<value xml:lang="ko"><![CDATA[SNS 로그인 사용시 일반 로그인도 이용할 수 있습니다.]]></value>

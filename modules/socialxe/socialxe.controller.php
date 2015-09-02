@@ -282,7 +282,7 @@
 			$mid = $_SESSION['socialxe_auth_redirect_mid'];
 			$redirect_url = $_SESSION['socialxe_auth_redirect'];
 			
-			$call_from = $_SESSION["call_from"];
+			$called_from = $_SESSION["called_from"];
 
 			if($redirect_url){
 				$redirect_url = Context::getRequestUri().'?'.$redirect_url;
@@ -336,7 +336,12 @@
 				$msg = $error;
 				$this->setError(-1);
 				if($type == 'login'){
-					$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+					if ($called_from == "json") {
+						$_SESSION["error_msg"] = $msg;
+					}
+					else {
+						$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispMemberLoginForm');
+					}
 				}
 			}
 			
@@ -352,8 +357,8 @@
 			if($msg){
 				$this->setMessage($msg);
 			}
-			if ($call_from == "json") {
-				$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispJsonLoginResult');
+			if ($type == 'login' && $called_from == "json") {
+				$redirect_url = getNotEncodedUrl('', 'mid', $mid, 'act', 'dispJsonLogged');
 			}
 			if(!$this->getRedirectUrl()){
 				$this->setRedirectUrl($redirect_url);
@@ -939,6 +944,10 @@
 				$output = executeQuery('socialxe.updateMemberSns', $args);
 				if(!$output->toBool()) return $output;
 				
+				if ($_SESSION["called_from"] == 'json') {
+					$_SESSION["user_id"] = $user_id;
+				}
+
 				//SNS µî·Ï
 			}else{
 				$output = $this->registerSns($oLibrary);

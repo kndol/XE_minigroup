@@ -4,4 +4,8 @@
 		<value xml:lang="ko"><![CDATA[JSON 데이터]]></value>
 		<value xml:lang="en"><![CDATA[JSON data]]></value>
 	</item>
+	<item name="about_keep_app_warning">
+		<value xml:lang="ko"><![CDATA[앱을 종료한 후에도 로그인이 계속 유지될 수 있습니다. 로그인 유지 기능을 사용할 경우 다음 접속부터는 로그인할 필요가 없습니다. 본인의 스마트폰이 아닐 경우 개인정보가 유출될 수 있으니 꼭 로그아웃을 해주세요.]]></value>
+		<value xml:lang="en"><![CDATA[You will be still signed in even when this app is closed. It is not recommended to use this if you are using the ohter's smartphone, for your personal information could be violated.]]></value>
+	</item>
 </lang>

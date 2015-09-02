@@ -1,13 +1,14 @@
 <?php
-    /**
-     * Json Procedure Control Class
-     * 
-     * @class  JsonController
-     * @author KnDol (kndol@kndol.net)
-     **/
+	/**
+	 * Json Procedure Control Class
+	 * 
+	 * @class  JsonController
+	 * @author KnDol (kndol@kndol.net)
+	 **/
+
+	require_once(_XE_PATH_ . 'modules/json/json.lib.php');
 
     class jsonController extends json {
-
         /**
          * @brief 초기화
          **/
@@ -15,43 +16,69 @@
 			Context::setRequestMethod('JSON');
 			Context::setResponseMethod('JSON');
         }
-		
-		function procJsonMemberLogin($user_id = null, $password = null, $reg_id=null) {
-			if(!$user_id) $user_id = Context::get('user_id');
-			if(!$password) $password = Context::get('password');
-			if(!$reg_id) $reg_id = Context::get('reg_id');
+
+
+		function procJsonMemberLogin() {
+			$crypted = Context::get('crypted');
+
+			$security_key = $_SESSION['SECURITY_KEY'];
+
+			if (!$crypted || !$security_key) {
+				$this->setError(-1);
+				$this->setMessage('Illegal access', 'error');
+				return;
+			}
+
+			$oJsonLib = new jsonLib();
+			$data = $oJsonLib->decrypt($security_key, $crypted);
+
+			$user_id = $data->user_id;
+			$password = $data->password;
+			$keep_signed = $data->keep_signed;
+			$reg_id = $data->reg_id;
+
 			$oMemberModel = &getModel('member');
 			$oMemberController = &getController('member');
-			$output = $oMemberController->doLogin($user_id, $password);
-			if($output->toBool()) {
-				$logged_info = $oMemberModel->getLoggedInfo();
-				
-				if(isset($reg_id)) {
-					$member_srl = $logged_info->member_srl;
-					$oNcenterliteModel = getModel('ncenterlite');
-					$output = $oNcenterliteModel->getMemberConfig($member_srl);
 
+			if($oMemberModel->isLogged()) {
+				$this->setMessage('already_logged', 'info');
+			}
+			else {
+				$output = $oMemberController->doLogin($user_id, $password, $password==''?true:$keep_signed);
+				if($output->toBool()) {
+					$logged_info = $oMemberModel->getLoggedInfo();
+					
+					if(isset($reg_id)) {
+						$member_srl = $logged_info->member_srl;
+						$oNcenterliteModel = getModel('ncenterlite');
+						$output = $oNcenterliteModel->getMemberConfig($member_srl);
+	
+						$args = new stdClass();
+						
+						$args->reg_id = $reg_id;
+						$args->empty_value = "";
+						$outputs = executeQuery('ncenterlite.resetUserConfig', $args);
+						
+						$args->member_srl = $member_srl;
+						$args->comment_notify = $output?$output->data->comment_notify:'Y';
+						$args->mention_notify = $output?$output->data->mention_notify:'Y';
+						$args->message_notify = $output?$output->data->message_notify:'Y';
+						if(!$output)
+							$outputs = executeQuery('ncenterlite.insertUserConfig', $args);
+						else
+							$outputs = executeQuery('ncenterlite.updateUserConfig', $args);
+					}
+					
+					$config = $oMemberModel->getMemberConfig();
 					$args = new stdClass();
-					
-					$args->reg_id = $reg_id;
-					$args->empty_value = "";
-					$outputs = executeQuery('ncenterlite.resetUserConfig', $args);
-					
-					$args->member_srl = $member_srl;
-					$args->comment_notify = $output?$output->data->comment_notify:'Y';
-					$args->mention_notify = $output?$output->data->mention_notify:'Y';
-					$args->message_notify = $output?$output->data->message_notify:'Y';
-					if(!$output)
-						$outputs = executeQuery('ncenterlite.insertUserConfig', $args);
-					else
-						$outputs = executeQuery('ncenterlite.updateUserConfig', $args);
+					$args->identifier = $config->identifier;
+					$logged_info->config = $args;
+					$this->setMessage('msg_logged', 'info');
+					$this->add('data', $logged_info);
+				} else {
+					$this->setError(-1);
+					$this->setMessage($output->message, 'error');
 				}
-				
-				$this->add('profile_image', $logged_info->profile_image->src);
-				$this->add('nick_name', $logged_info->nick_name);
-				$this->add('email_address', $logged_info->email_address);
-			} else {
-				$this->setMessage('failed_to_login');
 			}
 		}
 		
